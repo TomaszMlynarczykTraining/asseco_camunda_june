@@ -3,7 +3,7 @@
   <bpmn:collaboration id="Collaboration_10daybm">
     <bpmn:participant id="Participant_125p400" processRef="PR_01_PIZZA_CHOICE" />
   </bpmn:collaboration>
-  <bpmn:process id="PR_01_PIZZA_CHOICE" name="Pizza process" isExecutable="true" camunda:versionTag="1" camunda:historyTimeToLive="5">
+  <bpmn:process id="PR_01_PIZZA_CHOICE" name="PR_01_PIZZA_CHOICE" isExecutable="true" camunda:versionTag="1" camunda:historyTimeToLive="5">
     <bpmn:laneSet id="LaneSet_1f4rehm">
       <bpmn:lane id="Lane_0xjdc10" name="Camunda backend service">
         <bpmn:flowNodeRef>Activity_0jkr5jz</bpmn:flowNodeRef>
