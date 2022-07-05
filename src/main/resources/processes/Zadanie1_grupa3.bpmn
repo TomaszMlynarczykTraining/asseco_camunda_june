@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:modeler="http://camunda.org/schema/modeler/1.0" id="Definitions_0tsic0r" targetNamespace="http://bpmn.io/schema/bpmn" exporter="Camunda Modeler" exporterVersion="4.11.1" modeler:executionPlatform="Camunda Platform" modeler:executionPlatformVersion="7.15.0">
+<bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:camunda="http://camunda.org/schema/1.0/bpmn" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:modeler="http://camunda.org/schema/modeler/1.0" id="Definitions_0tsic0r" targetNamespace="http://bpmn.io/schema/bpmn" exporter="Camunda Modeler" exporterVersion="4.11.1" modeler:executionPlatform="Camunda Platform" modeler:executionPlatformVersion="7.15.0">
   <bpmn:collaboration id="Collaboration_11voghg">
     <bpmn:participant id="Participant_1srsmro" processRef="Process_1r39j2k" />
   </bpmn:collaboration>
@@ -7,7 +7,6 @@
     <bpmn:laneSet id="LaneSet_0ut25tc">
       <bpmn:lane id="Lane_0q7qdfw" name="Dział kadr">
         <bpmn:flowNodeRef>StartEvent_1</bpmn:flowNodeRef>
-        <bpmn:flowNodeRef>Activity_1i1j4db</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>Activity_0mhd2e1</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>Activity_135absl</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>Gateway_0mil1ev</bpmn:flowNodeRef>
@@ -17,10 +16,10 @@
         <bpmn:flowNodeRef>Gateway_0o2odsd</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>Event_16dk69r</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>Activity_1vqedu6</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Activity_1i1j4db</bpmn:flowNodeRef>
         <bpmn:childLaneSet id="LaneSet_0tk7tbm">
           <bpmn:lane id="Lane_0fs153n">
             <bpmn:flowNodeRef>StartEvent_1</bpmn:flowNodeRef>
-            <bpmn:flowNodeRef>Activity_1i1j4db</bpmn:flowNodeRef>
             <bpmn:flowNodeRef>Activity_0mhd2e1</bpmn:flowNodeRef>
             <bpmn:flowNodeRef>Activity_135absl</bpmn:flowNodeRef>
             <bpmn:flowNodeRef>Gateway_0mil1ev</bpmn:flowNodeRef>
@@ -30,6 +29,7 @@
             <bpmn:flowNodeRef>Gateway_0o2odsd</bpmn:flowNodeRef>
             <bpmn:flowNodeRef>Event_16dk69r</bpmn:flowNodeRef>
             <bpmn:flowNodeRef>Activity_1vqedu6</bpmn:flowNodeRef>
+            <bpmn:flowNodeRef>Activity_1i1j4db</bpmn:flowNodeRef>
             <bpmn:childLaneSet id="LaneSet_01kodvt" />
           </bpmn:lane>
         </bpmn:childLaneSet>
@@ -52,10 +52,6 @@
     <bpmn:startEvent id="StartEvent_1">
       <bpmn:outgoing>Flow_0coocks</bpmn:outgoing>
     </bpmn:startEvent>
-    <bpmn:userTask id="Activity_1i1j4db" name="Przygotowanie zamówienia">
-      <bpmn:incoming>Flow_0coocks</bpmn:incoming>
-      <bpmn:outgoing>Flow_1ob4xjr</bpmn:outgoing>
-    </bpmn:userTask>
     <bpmn:serviceTask id="Activity_1wk67g9" name="Opublikowanie ogłoszenia o pracę">
       <bpmn:incoming>Flow_1ob4xjr</bpmn:incoming>
       <bpmn:outgoing>Flow_08i3q91</bpmn:outgoing>
@@ -132,6 +128,13 @@
       <bpmn:incoming>Flow_18cjzk6</bpmn:incoming>
       <bpmn:outgoing>Flow_1ad79ke</bpmn:outgoing>
     </bpmn:userTask>
+    <bpmn:callActivity id="Activity_1i1j4db" name="Przygotowanie zamówienia" calledElement="subproces1">
+      <bpmn:extensionElements>
+        <camunda:in businessKey="#{execution.processBusinessKey}" />
+      </bpmn:extensionElements>
+      <bpmn:incoming>Flow_0coocks</bpmn:incoming>
+      <bpmn:outgoing>Flow_1ob4xjr</bpmn:outgoing>
+    </bpmn:callActivity>
   </bpmn:process>
   <bpmndi:BPMNDiagram id="BPMNDiagram_1">
     <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="Collaboration_11voghg">
@@ -253,9 +256,6 @@
       <bpmndi:BPMNShape id="_BPMNShape_StartEvent_2" bpmnElement="StartEvent_1">
         <dc:Bounds x="232" y="172" width="36" height="36" />
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Activity_1wc0m4o_di" bpmnElement="Activity_1i1j4db">
-        <dc:Bounds x="320" y="150" width="100" height="80" />
-      </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Activity_1bnitp4_di" bpmnElement="Activity_1wk67g9">
         <dc:Bounds x="460" y="370" width="100" height="80" />
       </bpmndi:BPMNShape>
@@ -294,6 +294,9 @@
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Activity_13lo1hv_di" bpmnElement="Activity_1vqedu6">
         <dc:Bounds x="1920" y="170" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_00e6811_di" bpmnElement="Activity_1i1j4db">
+        <dc:Bounds x="320" y="150" width="100" height="80" />
       </bpmndi:BPMNShape>
     </bpmndi:BPMNPlane>
   </bpmndi:BPMNDiagram>
