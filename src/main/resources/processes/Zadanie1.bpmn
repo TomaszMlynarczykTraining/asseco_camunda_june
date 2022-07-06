@@ -53,7 +53,7 @@
     <bpmn:startEvent id="StartEvent_1" name="dokument rozliczeniowy">
       <bpmn:outgoing>Flow_1h11sjt</bpmn:outgoing>
     </bpmn:startEvent>
-    <bpmn:callActivity id="Activity_14ibx01" name="sprawdzenie zamowienia" calledElement="PR_sprawdzenie_zamowienia">
+    <bpmn:callActivity id="Activity_14ibx01" name="sprawdzenie zamowienia" calledElement="PR_sprawdzenie_zamowienia" camunda:variableMappingDelegateExpression="${mapDelegate1}">
       <bpmn:extensionElements>
         <camunda:in businessKey="#{execution.processBusinessKey}" />
       </bpmn:extensionElements>
