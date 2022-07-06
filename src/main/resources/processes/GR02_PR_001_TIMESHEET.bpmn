@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:camunda="http://camunda.org/schema/1.0/bpmn" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:modeler="http://camunda.org/schema/modeler/1.0" id="Definitions_0kab862" targetNamespace="http://bpmn.io/schema/bpmn" exporter="Camunda Modeler" exporterVersion="3.5.0" modeler:executionPlatform="Camunda Platform" modeler:executionPlatformVersion="7.15.0">
-  <bpmn:collaboration id="Collaboration_05o9z6j">
+  <bpmn:collaboration id="OcenaWniosku">
     <bpmn:documentation>Menago</bpmn:documentation>
     <bpmn:participant id="Participant_17b6wmj" processRef="PR_G02_TIMESHEET" />
   </bpmn:collaboration>
@@ -83,7 +83,7 @@
       <bpmn:incoming>Flow_11mlmbt</bpmn:incoming>
       <bpmn:outgoing>Flow_120htpc</bpmn:outgoing>
     </bpmn:sendTask>
-    <bpmn:callActivity id="Task_0azrjl8" name="Ocena wniosku nadgodzin&#10;&#10;" calledElement="GR02_PR_001_TIMESHEET_SUB">
+    <bpmn:callActivity id="Task_0azrjl8" name="Ocena wniosku nadgodzin&#10;&#10;" calledElement="GR02_PR_001_TIMESHEET_SUB" camunda:variableMappingDelegateExpression="${variableMapperOcenaWniosku}">
       <bpmn:extensionElements>
         <camunda:in businessKey="#{execution.processBusinessKey}" />
       </bpmn:extensionElements>
@@ -92,7 +92,7 @@
     </bpmn:callActivity>
   </bpmn:process>
   <bpmndi:BPMNDiagram id="BPMNDiagram_1">
-    <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="Collaboration_05o9z6j">
+    <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="OcenaWniosku">
       <bpmndi:BPMNShape id="Participant_17b6wmj_di" bpmnElement="Participant_17b6wmj" isHorizontal="true">
         <dc:Bounds x="160" y="85" width="1068" height="505" />
       </bpmndi:BPMNShape>
