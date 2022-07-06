@@ -1,7 +1,6 @@
-package com.example.workflow.mvc.delegates;
+package com.example.workflow.group3;
 
 
-import com.example.workflow.mvc.entity.Client;
 import com.example.workflow.mvc.service.ClientService;
 import org.camunda.bpm.engine.RuntimeService;
 import org.camunda.bpm.engine.delegate.DelegateExecution;
@@ -10,10 +9,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Service
-public class MockDelegate implements JavaDelegate {
+public class ProcessCandidateDelegate implements JavaDelegate {
 
     @Autowired
     RuntimeService runtimeService;
@@ -28,13 +26,12 @@ public class MockDelegate implements JavaDelegate {
         // delegateExecution.getSuperExecution().getVariable("pizza");
         // delegateExecution.getVariableLocal("pizza");
 
-//        List<Client> clients = clientService.getClients().stream()
-//                .collect(Collectors.toList());
-//
-//        delegateExecution.setVariable("clientList", clients);
-
-        //System.out.println(runtimeService.getVariable(delegateExecution.getProcessInstanceId(), "pizza"));
-
-
+        Candidate candidate = (Candidate) delegateExecution.getVariable(Group3ProcessVariables.VAR_CANDIDATE);
+        Boolean passed = (Boolean) delegateExecution.getVariable(Group3ProcessVariables.VAR_CANDIDATE_PASSED);
+        if(passed){
+            candidate.setSelected(true);
+            delegateExecution.setVariable(Group3ProcessVariables.VAR_CANDIDATE, candidate);
+        }
     }
+
 }
