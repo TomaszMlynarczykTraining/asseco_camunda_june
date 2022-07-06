@@ -144,7 +144,7 @@
       <bpmn:incoming>Flow_18cjzk6</bpmn:incoming>
       <bpmn:outgoing>Flow_1ad79ke</bpmn:outgoing>
     </bpmn:userTask>
-    <bpmn:callActivity id="Activity_1i1j4db" name="Przygotowanie zamówienia" calledElement="subproces1">
+    <bpmn:callActivity id="Activity_1i1j4db" name="Przygotowanie zamówienia" calledElement="grp3_subproces1" camunda:variableMappingDelegateExpression="${variableMappingGroup3Bean}">
       <bpmn:extensionElements>
         <camunda:in businessKey="#{execution.processBusinessKey}" />
       </bpmn:extensionElements>
