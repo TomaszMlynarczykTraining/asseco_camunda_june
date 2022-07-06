@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" id="Definitions_0s5kt9k" targetNamespace="http://bpmn.io/schema/bpmn" exporter="Camunda Modeler" exporterVersion="3.5.0">
+  <bpmn:process id="GR02_PR_001_TIMESHEET_SUB" name="Ocena wniosku nadgodzin" isExecutable="true">
+    <bpmn:startEvent id="StartEvent_1">
+      <bpmn:outgoing>SequenceFlow_0kv1vcg</bpmn:outgoing>
+    </bpmn:startEvent>
+    <bpmn:userTask id="UserTask_1f46f1k" name="Ocena wniosku nadgodzin">
+      <bpmn:incoming>SequenceFlow_0kv1vcg</bpmn:incoming>
+      <bpmn:outgoing>SequenceFlow_03ofl8c</bpmn:outgoing>
+    </bpmn:userTask>
+    <bpmn:endEvent id="EndEvent_1t8konn">
+      <bpmn:incoming>SequenceFlow_03ofl8c</bpmn:incoming>
+    </bpmn:endEvent>
+    <bpmn:sequenceFlow id="SequenceFlow_0kv1vcg" sourceRef="StartEvent_1" targetRef="UserTask_1f46f1k" />
+    <bpmn:sequenceFlow id="SequenceFlow_03ofl8c" sourceRef="UserTask_1f46f1k" targetRef="EndEvent_1t8konn" />
+  </bpmn:process>
+  <bpmndi:BPMNDiagram id="BPMNDiagram_1">
+    <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="GR02_PR_001_TIMESHEET_SUB">
+      <bpmndi:BPMNShape id="_BPMNShape_StartEvent_2" bpmnElement="StartEvent_1">
+        <dc:Bounds x="179" y="99" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="UserTask_1f46f1k_di" bpmnElement="UserTask_1f46f1k">
+        <dc:Bounds x="300" y="77" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="EndEvent_1t8konn_di" bpmnElement="EndEvent_1t8konn">
+        <dc:Bounds x="482" y="99" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="SequenceFlow_0kv1vcg_di" bpmnElement="SequenceFlow_0kv1vcg">
+        <di:waypoint x="215" y="117" />
+        <di:waypoint x="300" y="117" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="SequenceFlow_03ofl8c_di" bpmnElement="SequenceFlow_03ofl8c">
+        <di:waypoint x="400" y="117" />
+        <di:waypoint x="482" y="117" />
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</bpmn:definitions>

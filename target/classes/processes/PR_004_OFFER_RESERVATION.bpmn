@@ -1,5 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<<<<<<< HEAD
 <bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:camunda="http://camunda.org/schema/1.0/bpmn" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:modeler="http://camunda.org/schema/modeler/1.0" id="Definitions_0o5m0ab" targetNamespace="http://bpmn.io/schema/bpmn" exporter="Camunda Modeler" exporterVersion="4.11.1" modeler:executionPlatform="Camunda Platform" modeler:executionPlatformVersion="7.15.0">
+=======
+<bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:camunda="http://camunda.org/schema/1.0/bpmn" xmlns:modeler="http://camunda.org/schema/modeler/1.0" id="Definitions_0o5m0ab" targetNamespace="http://bpmn.io/schema/bpmn" exporter="Camunda Modeler" exporterVersion="3.5.0" modeler:executionPlatform="Camunda Platform" modeler:executionPlatformVersion="7.15.0">
+>>>>>>> e1b3dc568f4c77b6aa4b07e79e2ef92982318f98
   <bpmn:collaboration id="Collaboration_0uu11xi">
     <bpmn:participant id="Participant_08vi5gc" processRef="PR_004_OFFER_RESERVATION" />
   </bpmn:collaboration>
@@ -48,33 +52,49 @@
       <bpmn:incoming>Flow_06bo93y</bpmn:incoming>
       <bpmn:outgoing>Flow_0j9ucyi</bpmn:outgoing>
     </bpmn:userTask>
-    <bpmn:exclusiveGateway id="Gateway_0jahjt8" name="Czy oferta jest wykonalna">
+    <bpmn:exclusiveGateway id="Gateway_0jahjt8" name="Czy oferta jest wykonalna" default="Flow_1h6y5le">
       <bpmn:incoming>Flow_0j9ucyi</bpmn:incoming>
       <bpmn:outgoing>Flow_1h6y5le</bpmn:outgoing>
       <bpmn:outgoing>Flow_0z0w38m</bpmn:outgoing>
     </bpmn:exclusiveGateway>
     <bpmn:sequenceFlow id="Flow_0j9ucyi" sourceRef="Activity_1riak7l" targetRef="Gateway_0jahjt8" />
+<<<<<<< HEAD
     <bpmn:sequenceFlow id="Flow_1h6y5le" name="Jest" sourceRef="Gateway_0jahjt8" targetRef="Activity_0ukd934">
       <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${opinion=='APPLICABLE'}</bpmn:conditionExpression>
     </bpmn:sequenceFlow>
     <bpmn:sequenceFlow id="Flow_0z0w38m" name="Nie jest" sourceRef="Gateway_0jahjt8" targetRef="Activity_0zekxha" />
+=======
+    <bpmn:sequenceFlow id="Flow_1h6y5le" name="Jest" sourceRef="Gateway_0jahjt8" targetRef="Activity_0ukd934" />
+    <bpmn:sequenceFlow id="Flow_0z0w38m" name="Nie jest" sourceRef="Gateway_0jahjt8" targetRef="Activity_0bzowvv">
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${false}</bpmn:conditionExpression>
+    </bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="Flow_13d9qsu" sourceRef="Activity_0bzowvv" targetRef="Event_1slhlwh" />
+>>>>>>> e1b3dc568f4c77b6aa4b07e79e2ef92982318f98
     <bpmn:sequenceFlow id="Flow_0mu8wam" sourceRef="Activity_0ukd934" targetRef="Activity_1cwl05f" />
     <bpmn:endEvent id="Event_0vkxq1p">
       <bpmn:incoming>Flow_1jwxc1g</bpmn:incoming>
     </bpmn:endEvent>
     <bpmn:sequenceFlow id="Flow_1jwxc1g" sourceRef="Activity_1cwl05f" targetRef="Event_0vkxq1p" />
     <bpmn:serviceTask id="Activity_0ukd934" name="Sprawdzenie dostępności personelu" camunda:delegateExpression="${mockDelegate}">
+<<<<<<< HEAD
       <bpmn:extensionElements>
         <camunda:inputOutput>
           <camunda:inputParameter name="opinion">${opinion}</camunda:inputParameter>
         </camunda:inputOutput>
       </bpmn:extensionElements>
+=======
+>>>>>>> e1b3dc568f4c77b6aa4b07e79e2ef92982318f98
       <bpmn:incoming>Flow_1h6y5le</bpmn:incoming>
       <bpmn:outgoing>Flow_0mu8wam</bpmn:outgoing>
     </bpmn:serviceTask>
     <bpmn:serviceTask id="Activity_0bzowvv" name="Wysłanie maila klientowi" camunda:delegateExpression="${mockDelegate}">
+<<<<<<< HEAD
       <bpmn:incoming>Flow_0naagfp</bpmn:incoming>
       <bpmn:outgoing>Flow_0922bh5</bpmn:outgoing>
+=======
+      <bpmn:incoming>Flow_0z0w38m</bpmn:incoming>
+      <bpmn:outgoing>Flow_13d9qsu</bpmn:outgoing>
+>>>>>>> e1b3dc568f4c77b6aa4b07e79e2ef92982318f98
     </bpmn:serviceTask>
     <bpmn:userTask id="Activity_1cwl05f" name="Przygotowanie oferty">
       <bpmn:incoming>Flow_0mu8wam</bpmn:incoming>
@@ -116,10 +136,16 @@
     <bpmn:endEvent id="Event_1slhlwh">
       <bpmn:incoming>Flow_1kx6oqo</bpmn:incoming>
     </bpmn:endEvent>
+<<<<<<< HEAD
     <bpmn:sequenceFlow id="Flow_1kx6oqo" sourceRef="Activity_1bojbme" targetRef="Event_1slhlwh" />
     <bpmn:userTask id="Activity_1bojbme" name="Some task">
       <bpmn:incoming>Flow_0922bh5</bpmn:incoming>
       <bpmn:outgoing>Flow_1kx6oqo</bpmn:outgoing>
+=======
+    <bpmn:userTask id="Activity_1cwl05f" name="Przygotowanie oferty">
+      <bpmn:incoming>Flow_0mu8wam</bpmn:incoming>
+      <bpmn:outgoing>Flow_1jwxc1g</bpmn:outgoing>
+>>>>>>> e1b3dc568f4c77b6aa4b07e79e2ef92982318f98
     </bpmn:userTask>
   </bpmn:process>
   <bpmn:message id="Message_02g7n7k" name="Message_3g8tqh7" />
@@ -246,6 +272,9 @@
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Event_1g6cuv3_di" bpmnElement="Event_1g6cuv3">
         <dc:Bounds x="822" y="812" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="UserTask_0c3ntzf_di" bpmnElement="Activity_1cwl05f">
+        <dc:Bounds x="1050" y="110" width="100" height="80" />
       </bpmndi:BPMNShape>
     </bpmndi:BPMNPlane>
   </bpmndi:BPMNDiagram>
