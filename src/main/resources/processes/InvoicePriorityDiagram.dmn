@@ -7,9 +7,9 @@
           <text>amount</text>
         </inputExpression>
       </input>
-      <input id="InputClause_0qn6tmj" camunda:inputVariable="maxDaysToPayments">
-        <inputExpression id="LiteralExpression_1tdy4qy" typeRef="integer">
-          <text>maxDaysToPayments</text>
+      <input id="InputClause_0qn6tmj" camunda:inputVariable="invoiceDate">
+        <inputExpression id="LiteralExpression_1tdy4qy" typeRef="date">
+          <text>invoiceDate</text>
         </inputExpression>
       </input>
       <output id="Output_1" name="invoicePriority" typeRef="string" />
@@ -29,7 +29,7 @@
           <text></text>
         </inputEntry>
         <inputEntry id="UnaryTests_0827f2k">
-          <text>&gt; 10</text>
+          <text>date(now()) &gt; date(duration("P10D") + invoiceDate)</text>
         </inputEntry>
         <outputEntry id="LiteralExpression_0wkd7jk">
           <text>"HIGH"</text>
