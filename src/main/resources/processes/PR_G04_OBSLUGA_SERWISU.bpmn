@@ -69,7 +69,7 @@
     <bpmn:userTask id="Activity_1powbgj" name="Utworzenie zlecenia alimentacyjnego">
       <bpmn:incoming>Flow_0rhsde3</bpmn:incoming>
       <bpmn:outgoing>Flow_05fut6v</bpmn:outgoing>
-      <bpmn:multiInstanceLoopCharacteristics camunda:collection="listaZlecen" camunda:elementVariable="zlecenie" />
+      <bpmn:multiInstanceLoopCharacteristics isSequential="true" camunda:collection="listaZlecen" camunda:elementVariable="zlecenie" />
     </bpmn:userTask>
     <bpmn:userTask id="Activity_0ity1x8" name="Prace konserwacyjne w terenie">
       <bpmn:incoming>Flow_1dm76ok</bpmn:incoming>
