@@ -8,6 +8,8 @@ import org.camunda.bpm.engine.delegate.JavaDelegate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+
 @Service
 public class CorellateMessage implements JavaDelegate {
 
@@ -20,6 +22,9 @@ public class CorellateMessage implements JavaDelegate {
     @Override
     public void execute(DelegateExecution delegateExecution) throws Exception {
 
+        ArrayList<String> strings = new ArrayList<>();
+        strings.add("");
+        strings.add("");
         runtimeService.correlateMessage("MSG_START_PR02");
     }
 }
