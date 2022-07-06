@@ -50,6 +50,19 @@
       <bpmn:outgoing>Flow_0hxxko3</bpmn:outgoing>
     </bpmn:startEvent>
     <bpmn:userTask id="Activity_0iapq4m" name="Utworzenie powiadomienia">
+      <bpmn:extensionElements>
+        <camunda:inputOutput>
+          <camunda:outputParameter name="listaZlecen">
+            <camunda:list>
+              <camunda:value>1</camunda:value>
+              <camunda:value>2</camunda:value>
+              <camunda:value>3</camunda:value>
+              <camunda:value>4</camunda:value>
+              <camunda:value>5</camunda:value>
+            </camunda:list>
+          </camunda:outputParameter>
+        </camunda:inputOutput>
+      </bpmn:extensionElements>
       <bpmn:incoming>Flow_0hxxko3</bpmn:incoming>
       <bpmn:outgoing>Flow_0rhsde3</bpmn:outgoing>
     </bpmn:userTask>
