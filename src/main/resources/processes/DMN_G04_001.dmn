@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions xmlns="https://www.omg.org/spec/DMN/20191111/MODEL/" xmlns:dmndi="https://www.omg.org/spec/DMN/20191111/DMNDI/" xmlns:dc="http://www.omg.org/spec/DMN/20180521/DC/" id="DMN_G04" name="DRD" namespace="http://camunda.org/schema/1.0/dmn" exporter="Camunda Modeler" exporterVersion="4.11.1">
+  <decision id="DMN_G04_001" name="DMN_G04_001">
+    <decisionTable id="DecisionTable_1h2n1fa" hitPolicy="FIRST">
+      <input id="InputClause_038oy0s">
+        <inputExpression id="LiteralExpression_1drw0yg" typeRef="string">
+          <text>kraj</text>
+        </inputExpression>
+      </input>
+      <input id="InputClause_0xklewv">
+        <inputExpression id="LiteralExpression_1ozgu93" typeRef="double">
+          <text>koszt</text>
+        </inputExpression>
+      </input>
+      <output id="OutputClause_0b3f8z5" name="status" typeRef="string" />
+      <rule id="DecisionRule_0yfnd1d">
+        <inputEntry id="UnaryTests_0noyqdh">
+          <text>not("PL")</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1ixmj91">
+          <text></text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_0w32aaa">
+          <text>"ANULOWANE"</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_12t4cs3">
+        <inputEntry id="UnaryTests_0xb7p15">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1smsr91">
+          <text>&gt;3000</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_1w9t878">
+          <text>"WYMAGA_AKCEPTACJI"</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_1x89wny">
+        <inputEntry id="UnaryTests_0u65zam">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1y2ha2i">
+          <text></text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_0i9jdcx">
+          <text>"POZYTYWNE"</text>
+        </outputEntry>
+      </rule>
+    </decisionTable>
+  </decision>
+  <dmndi:DMNDI>
+    <dmndi:DMNDiagram>
+      <dmndi:DMNShape id="DMNShape_1vfeokv" dmnElementRef="DMN_G04_001">
+        <dc:Bounds height="80" width="180" x="160" y="100" />
+      </dmndi:DMNShape>
+    </dmndi:DMNDiagram>
+  </dmndi:DMNDI>
+</definitions>
