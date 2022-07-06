@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions xmlns="https://www.omg.org/spec/DMN/20191111/MODEL/" xmlns:dmndi="https://www.omg.org/spec/DMN/20191111/DMNDI/" xmlns:dc="http://www.omg.org/spec/DMN/20180521/DC/" xmlns:biodi="http://bpmn.io/schema/dmn/biodi/2.0" id="Definitions_grp3" name="DRD" namespace="http://camunda.org/schema/1.0/dmn" exporter="Camunda Modeler" exporterVersion="4.11.1">
+  <decision id="Decision_1jwcocm" name="Decision 2">
+    <decisionTable id="DecisionTable_1geamu2" hitPolicy="FIRST">
+      <input id="Input_1">
+        <inputExpression id="InputExpression_1" typeRef="long">
+          <text>proposedSalary</text>
+        </inputExpression>
+      </input>
+      <input id="InputClause_06aub1l">
+        <inputExpression id="LiteralExpression_09r6zlg" typeRef="boolean">
+          <text>wasInterviewed</text>
+        </inputExpression>
+      </input>
+      <output id="Output_1" name="isRejected" typeRef="boolean" biodi:width="192" />
+      <rule id="DecisionRule_11poneu">
+        <inputEntry id="UnaryTests_0nibjmy">
+          <text>&gt;20000</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1hw32sd">
+          <text></text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_09h3pr4">
+          <text>true</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_037yp8e">
+        <inputEntry id="UnaryTests_1y78xi7">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1n7bc1o">
+          <text>true</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_1ksn90k">
+          <text>true</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_1ccm8k2">
+        <inputEntry id="UnaryTests_0cb2sp0">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1waa0aw">
+          <text></text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_07vpyq4">
+          <text>false</text>
+        </outputEntry>
+      </rule>
+    </decisionTable>
+  </decision>
+  <dmndi:DMNDI>
+    <dmndi:DMNDiagram>
+      <dmndi:DMNShape dmnElementRef="Decision_1jwcocm">
+        <dc:Bounds height="80" width="180" x="160" y="100" />
+      </dmndi:DMNShape>
+    </dmndi:DMNDiagram>
+  </dmndi:DMNDI>
+</definitions>
