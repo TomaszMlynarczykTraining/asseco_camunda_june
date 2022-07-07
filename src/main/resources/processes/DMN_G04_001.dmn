@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<definitions xmlns="https://www.omg.org/spec/DMN/20191111/MODEL/" xmlns:dmndi="https://www.omg.org/spec/DMN/20191111/DMNDI/" xmlns:dc="http://www.omg.org/spec/DMN/20180521/DC/" id="DMN_G04" name="DRD" namespace="http://camunda.org/schema/1.0/dmn" exporter="Camunda Modeler" exporterVersion="4.11.1">
+<definitions xmlns="https://www.omg.org/spec/DMN/20191111/MODEL/" xmlns:dmndi="https://www.omg.org/spec/DMN/20191111/DMNDI/" xmlns:dc="http://www.omg.org/spec/DMN/20180521/DC/" xmlns:biodi="http://bpmn.io/schema/dmn/biodi/2.0" id="DMN_G04" name="DRD" namespace="http://camunda.org/schema/1.0/dmn" exporter="Camunda Modeler" exporterVersion="4.11.1">
   <decision id="DMN_G04_001" name="DMN_G04_001">
     <decisionTable id="DecisionTable_1h2n1fa" hitPolicy="FIRST">
       <input id="InputClause_038oy0s">
@@ -12,12 +12,20 @@
           <text>koszt</text>
         </inputExpression>
       </input>
+      <input id="InputClause_1ys28ib" biodi:width="192">
+        <inputExpression id="LiteralExpression_0pwiy62" typeRef="date">
+          <text>dataZaplaty</text>
+        </inputExpression>
+      </input>
       <output id="OutputClause_0b3f8z5" name="status" typeRef="string" />
       <rule id="DecisionRule_0yfnd1d">
         <inputEntry id="UnaryTests_0noyqdh">
           <text>not("PL")</text>
         </inputEntry>
         <inputEntry id="UnaryTests_1ixmj91">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_17r5hkp">
           <text></text>
         </inputEntry>
         <outputEntry id="LiteralExpression_0w32aaa">
@@ -31,7 +39,24 @@
         <inputEntry id="UnaryTests_1smsr91">
           <text>&gt;3000</text>
         </inputEntry>
+        <inputEntry id="UnaryTests_0037p3w">
+          <text></text>
+        </inputEntry>
         <outputEntry id="LiteralExpression_1w9t878">
+          <text>"WYMAGA_AKCEPTACJI"</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_0mtt4h5">
+        <inputEntry id="UnaryTests_1t4l5ew">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1pfa43f">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1bfiiwe">
+          <text>&gt; date and time(string(today() + duration("P10D")))</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_0vw56rh">
           <text>"WYMAGA_AKCEPTACJI"</text>
         </outputEntry>
       </rule>
@@ -40,6 +65,9 @@
           <text></text>
         </inputEntry>
         <inputEntry id="UnaryTests_1y2ha2i">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_16j9fl8">
           <text></text>
         </inputEntry>
         <outputEntry id="LiteralExpression_0i9jdcx">
