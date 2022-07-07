@@ -25,6 +25,7 @@ public class CorellateMessage implements JavaDelegate {
         ArrayList<String> strings = new ArrayList<>();
         strings.add("");
         strings.add("");
-        runtimeService.correlateMessage("MSG_START_PR02");
+
+        runtimeService.correlateMessage("EXAMPLE_MESSAGE");
     }
 }
