@@ -9,6 +9,12 @@ public class TimesheetProcess {
     public static final String OVER_HOURS_FORM_ID = "over_hours_form_id";
     public static final String OVER_HOURS_COUNT = "over_hours_count";
 
+    public static final String FORM_DATE = "form_date";
 
-    //nazwy messages, syngalow, id najwajzniejszych elementow itp.
+    public static final String DMN_RESULT = "dmn_result";
+
+    public static final String REJECTED = "rejected";
+
+    public static final String ACCEPTED = "accepted";
+
 }
