@@ -12,7 +12,13 @@
           <text>wasInterviewed</text>
         </inputExpression>
       </input>
+      <input id="InputClause_19ke4n7" biodi:width="192">
+        <inputExpression id="LiteralExpression_1nge1s9" typeRef="date">
+          <text>date</text>
+        </inputExpression>
+      </input>
       <output id="Output_1" name="isRejected" typeRef="boolean" biodi:width="192" />
+      <output id="OutputClause_0c654og" name="priority" typeRef="string" />
       <rule id="DecisionRule_11poneu">
         <inputEntry id="UnaryTests_0nibjmy">
           <text>&gt;20000</text>
@@ -20,8 +26,14 @@
         <inputEntry id="UnaryTests_1hw32sd">
           <text></text>
         </inputEntry>
+        <inputEntry id="UnaryTests_0v03pbz">
+          <text></text>
+        </inputEntry>
         <outputEntry id="LiteralExpression_09h3pr4">
           <text>true</text>
+        </outputEntry>
+        <outputEntry id="LiteralExpression_0pegr14">
+          <text></text>
         </outputEntry>
       </rule>
       <rule id="DecisionRule_037yp8e">
@@ -31,8 +43,14 @@
         <inputEntry id="UnaryTests_1n7bc1o">
           <text>true</text>
         </inputEntry>
+        <inputEntry id="UnaryTests_1ss29y6">
+          <text></text>
+        </inputEntry>
         <outputEntry id="LiteralExpression_1ksn90k">
           <text>true</text>
+        </outputEntry>
+        <outputEntry id="LiteralExpression_19jc46d">
+          <text></text>
         </outputEntry>
       </rule>
       <rule id="DecisionRule_1ccm8k2">
@@ -42,8 +60,48 @@
         <inputEntry id="UnaryTests_1waa0aw">
           <text></text>
         </inputEntry>
+        <inputEntry id="UnaryTests_108tgtl">
+          <text>&lt;=today() - 10</text>
+        </inputEntry>
         <outputEntry id="LiteralExpression_07vpyq4">
+          <text>-</text>
+        </outputEntry>
+        <outputEntry id="LiteralExpression_0jt38c5">
+          <text>"high"</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_158bke4">
+        <inputEntry id="UnaryTests_0hu9gt0">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_108l47g">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0wf0tky">
+          <text></text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_1y3gwvo">
           <text>false</text>
+        </outputEntry>
+        <outputEntry id="LiteralExpression_0l3zxu7">
+          <text>"normal"</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_189ovb6">
+        <inputEntry id="UnaryTests_0c6suol">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_03ddm4u">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_10ytyaf">
+          <text></text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_16n867e">
+          <text></text>
+        </outputEntry>
+        <outputEntry id="LiteralExpression_1ktscom">
+          <text></text>
         </outputEntry>
       </rule>
     </decisionTable>

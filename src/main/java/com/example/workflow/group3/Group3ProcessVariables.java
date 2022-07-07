@@ -6,4 +6,5 @@ public class Group3ProcessVariables {
     public static String VAR_CANDIDATE = "candidate";
     public static String VAR_IS_SELECTED_CANDIDATE = "isSelectedCandidate";
     public static String VAR_CANDIDATE_PASSED = "candidatePassed";
+    public static String MSG_GRP3 = "MESSAGE_GRP3";
 }
