@@ -106,6 +106,8 @@
     <bpmn:callActivity id="Activity_0gax75e" name="Obsługa kandydata" calledElement="Process_GRP3_SelectCandidate">
       <bpmn:extensionElements>
         <camunda:in businessKey="#{execution.processBusinessKey}" />
+        <camunda:in variables="all" />
+        <camunda:out variables="all" />
       </bpmn:extensionElements>
       <bpmn:incoming>Flow_1lzeawz</bpmn:incoming>
       <bpmn:outgoing>Flow_0nw8sy8</bpmn:outgoing>
