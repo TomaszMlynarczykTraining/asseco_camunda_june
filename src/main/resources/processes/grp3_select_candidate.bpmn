@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:camunda="http://camunda.org/schema/1.0/bpmn" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:modeler="http://camunda.org/schema/modeler/1.0" id="Definitions_02qo8x7" targetNamespace="http://bpmn.io/schema/bpmn" exporter="Camunda Modeler" exporterVersion="4.11.1" modeler:executionPlatform="Camunda Platform" modeler:executionPlatformVersion="7.15.0">
+  <bpmn:process id="Process_GRP3_SelectCandidate" isExecutable="true">
+    <bpmn:startEvent id="StartEvent_1">
+      <bpmn:outgoing>Flow_0wya2vr</bpmn:outgoing>
+    </bpmn:startEvent>
+    <bpmn:sendTask id="Activity_13i62r1" name="Wysłanie zaproszenia do kandydata" camunda:delegateExpression="${mockDelegate}">
+      <bpmn:incoming>Flow_0wya2vr</bpmn:incoming>
+      <bpmn:outgoing>Flow_0ienamd</bpmn:outgoing>
+    </bpmn:sendTask>
+    <bpmn:userTask id="Activity_1hvp62p" name="Wstępna rozmowa kwalifikacyjna&#10;&#10;">
+      <bpmn:incoming>Flow_0ienamd</bpmn:incoming>
+      <bpmn:outgoing>Flow_1luj0j7</bpmn:outgoing>
+    </bpmn:userTask>
+    <bpmn:exclusiveGateway id="Gateway_04e5xcv">
+      <bpmn:incoming>Flow_1luj0j7</bpmn:incoming>
+      <bpmn:outgoing>Flow_1d3wnxt</bpmn:outgoing>
+      <bpmn:outgoing>Flow_0zhykab</bpmn:outgoing>
+    </bpmn:exclusiveGateway>
+    <bpmn:userTask id="Activity_1ckx80y" name="Finalna rozmowa kwalifikacyjna">
+      <bpmn:incoming>Flow_1d3wnxt</bpmn:incoming>
+      <bpmn:outgoing>Flow_0pd0u2e</bpmn:outgoing>
+    </bpmn:userTask>
+    <bpmn:sequenceFlow id="Flow_0ienamd" sourceRef="Activity_13i62r1" targetRef="Activity_1hvp62p" />
+    <bpmn:sequenceFlow id="Flow_1luj0j7" sourceRef="Activity_1hvp62p" targetRef="Gateway_04e5xcv" />
+    <bpmn:sequenceFlow id="Flow_1d3wnxt" sourceRef="Gateway_04e5xcv" targetRef="Activity_1ckx80y">
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${candidatePassed  == true}</bpmn:conditionExpression>
+    </bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="Flow_0wya2vr" sourceRef="StartEvent_1" targetRef="Activity_13i62r1" />
+    <bpmn:endEvent id="Event_1d5dtj2">
+      <bpmn:incoming>Flow_0zhykab</bpmn:incoming>
+      <bpmn:incoming>Flow_1pbojv1</bpmn:incoming>
+    </bpmn:endEvent>
+    <bpmn:sequenceFlow id="Flow_0pd0u2e" sourceRef="Activity_1ckx80y" targetRef="Activity_1j6e619" />
+    <bpmn:sequenceFlow id="Flow_0zhykab" sourceRef="Gateway_04e5xcv" targetRef="Event_1d5dtj2">
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${candidatePassed == false}</bpmn:conditionExpression>
+    </bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="Flow_1pbojv1" sourceRef="Activity_1j6e619" targetRef="Event_1d5dtj2" />
+    <bpmn:serviceTask id="Activity_1j6e619" name="Zaznacz kandydata" camunda:delegateExpression="${processCandidateDelegate}">
+      <bpmn:incoming>Flow_0pd0u2e</bpmn:incoming>
+      <bpmn:outgoing>Flow_1pbojv1</bpmn:outgoing>
+    </bpmn:serviceTask>
+  </bpmn:process>
+  <bpmndi:BPMNDiagram id="BPMNDiagram_1">
+    <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="Process_GRP3_SelectCandidate">
+      <bpmndi:BPMNEdge id="Flow_0ienamd_di" bpmnElement="Flow_0ienamd">
+        <di:waypoint x="410" y="177" />
+        <di:waypoint x="470" y="177" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1luj0j7_di" bpmnElement="Flow_1luj0j7">
+        <di:waypoint x="570" y="177" />
+        <di:waypoint x="645" y="177" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1d3wnxt_di" bpmnElement="Flow_1d3wnxt">
+        <di:waypoint x="695" y="177" />
+        <di:waypoint x="790" y="177" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0wya2vr_di" bpmnElement="Flow_0wya2vr">
+        <di:waypoint x="215" y="177" />
+        <di:waypoint x="310" y="177" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0pd0u2e_di" bpmnElement="Flow_0pd0u2e">
+        <di:waypoint x="890" y="177" />
+        <di:waypoint x="960" y="177" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0zhykab_di" bpmnElement="Flow_0zhykab">
+        <di:waypoint x="670" y="152" />
+        <di:waypoint x="670" y="100" />
+        <di:waypoint x="1150" y="100" />
+        <di:waypoint x="1150" y="159" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1pbojv1_di" bpmnElement="Flow_1pbojv1">
+        <di:waypoint x="1060" y="177" />
+        <di:waypoint x="1132" y="177" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="_BPMNShape_StartEvent_2" bpmnElement="StartEvent_1">
+        <dc:Bounds x="179" y="159" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_13i62r1_di" bpmnElement="Activity_13i62r1">
+        <dc:Bounds x="310" y="137" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Gateway_04e5xcv_di" bpmnElement="Gateway_04e5xcv" isMarkerVisible="true">
+        <dc:Bounds x="645" y="152" width="50" height="50" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_1d5dtj2_di" bpmnElement="Event_1d5dtj2">
+        <dc:Bounds x="1132" y="159" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_1hvp62p_di" bpmnElement="Activity_1hvp62p">
+        <dc:Bounds x="470" y="137" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_1ckx80y_di" bpmnElement="Activity_1ckx80y">
+        <dc:Bounds x="790" y="137" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_1nigy90_di" bpmnElement="Activity_1j6e619">
+        <dc:Bounds x="960" y="137" width="100" height="80" />
+      </bpmndi:BPMNShape>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</bpmn:definitions>
