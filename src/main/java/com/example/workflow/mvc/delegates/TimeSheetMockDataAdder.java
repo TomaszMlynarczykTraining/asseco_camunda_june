@@ -13,7 +13,8 @@ import java.time.LocalDate;
 public class TimeSheetMockDataAdder implements JavaDelegate {
     @Override
     public void execute(DelegateExecution delegateExecution) throws Exception {
-        delegateExecution.getVariables().put(TimesheetProcess.FORM_DATE, LocalDate.now());
-        delegateExecution.getVariables().put(TimesheetProcess.OVER_HOURS_COUNT, 5);
+        log.info("Dodaję dane dla tabeli decyzyjnej");
+        delegateExecution.setVariable(TimesheetProcess.FORM_DATE, LocalDate.now());
+        delegateExecution.setVariable(TimesheetProcess.OVER_HOURS_COUNT, 5);
     }
 }
