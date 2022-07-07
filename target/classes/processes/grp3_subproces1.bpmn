@@ -1,10 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:modeler="http://camunda.org/schema/modeler/1.0" id="Definitions_0wc3aw1" targetNamespace="http://bpmn.io/schema/bpmn" exporter="Camunda Modeler" exporterVersion="4.11.1" modeler:executionPlatform="Camunda Platform" modeler:executionPlatformVersion="7.15.0">
+<bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:camunda="http://camunda.org/schema/1.0/bpmn" xmlns:modeler="http://camunda.org/schema/modeler/1.0" id="Definitions_0wc3aw1" targetNamespace="http://bpmn.io/schema/bpmn" exporter="Camunda Modeler" exporterVersion="4.11.1" modeler:executionPlatform="Camunda Platform" modeler:executionPlatformVersion="7.15.0">
   <bpmn:process id="grp3_subproces1" isExecutable="true">
     <bpmn:startEvent id="StartEvent_1">
       <bpmn:outgoing>Flow_1xll15e</bpmn:outgoing>
     </bpmn:startEvent>
     <bpmn:userTask id="Activity_18uctja" name="Przygotowanie zamówienia">
+      <bpmn:extensionElements>
+        <camunda:taskListener delegateExpression="${grp3TaskListener}" event="create" />
+      </bpmn:extensionElements>
       <bpmn:incoming>Flow_1xll15e</bpmn:incoming>
       <bpmn:outgoing>Flow_0ty8gkl</bpmn:outgoing>
     </bpmn:userTask>
@@ -15,14 +18,14 @@
     <bpmn:sequenceFlow id="Flow_0ty8gkl" sourceRef="Activity_18uctja" targetRef="Event_1w7yu5f" />
   </bpmn:process>
   <bpmndi:BPMNDiagram id="BPMNDiagram_1">
-    <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="subproces1">
-      <bpmndi:BPMNEdge id="Flow_1xll15e_di" bpmnElement="Flow_1xll15e">
-        <di:waypoint x="215" y="177" />
-        <di:waypoint x="310" y="177" />
-      </bpmndi:BPMNEdge>
+    <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="grp3_subproces1">
       <bpmndi:BPMNEdge id="Flow_0ty8gkl_di" bpmnElement="Flow_0ty8gkl">
         <di:waypoint x="410" y="160" />
         <di:waypoint x="512" y="160" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1xll15e_di" bpmnElement="Flow_1xll15e">
+        <di:waypoint x="215" y="177" />
+        <di:waypoint x="310" y="177" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNShape id="_BPMNShape_StartEvent_2" bpmnElement="StartEvent_1">
         <dc:Bounds x="179" y="159" width="36" height="36" />
