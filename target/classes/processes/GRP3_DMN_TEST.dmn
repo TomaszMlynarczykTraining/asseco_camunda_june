@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <definitions xmlns="https://www.omg.org/spec/DMN/20191111/MODEL/" xmlns:dmndi="https://www.omg.org/spec/DMN/20191111/DMNDI/" xmlns:dc="http://www.omg.org/spec/DMN/20180521/DC/" xmlns:biodi="http://bpmn.io/schema/dmn/biodi/2.0" id="Definitions_grp3" name="DRD" namespace="http://camunda.org/schema/1.0/dmn" exporter="Camunda Modeler" exporterVersion="4.11.1">
-  <decision id="Decision_1jwcocm" name="Decision 2">
-    <decisionTable id="DecisionTable_1geamu2" hitPolicy="FIRST">
+  <decision id="Decision_1jwcocm" name="Decision 1">
+    <decisionTable id="DecisionTable_1geamu2">
       <input id="Input_1">
         <inputExpression id="InputExpression_1" typeRef="long">
           <text>proposedSalary</text>
