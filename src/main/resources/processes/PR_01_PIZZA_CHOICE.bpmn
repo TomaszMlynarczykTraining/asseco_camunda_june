@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:camunda="http://camunda.org/schema/1.0/bpmn" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:modeler="http://camunda.org/schema/modeler/1.0" id="Definitions_0tyg4s5" targetNamespace="http://bpmn.io/schema/bpmn" exporter="Camunda Modeler" exporterVersion="4.12.0" modeler:executionPlatform="Camunda Platform" modeler:executionPlatformVersion="7.15.0">
+<bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:camunda="http://camunda.org/schema/1.0/bpmn" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:modeler="http://camunda.org/schema/modeler/1.0" id="Definitions_0tyg4s5" targetNamespace="http://bpmn.io/schema/bpmn" exporter="Camunda Modeler" exporterVersion="4.11.1" modeler:executionPlatform="Camunda Platform" modeler:executionPlatformVersion="7.15.0">
   <bpmn:collaboration id="Collaboration_10daybm">
     <bpmn:participant id="Participant_125p400" processRef="PR_01_PIZZA_CHOICE" />
   </bpmn:collaboration>
@@ -13,9 +13,7 @@
         <bpmn:flowNodeRef>Event_0ga6b6s</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>PR_01_DMN_001_DECISION</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>PR_01_START_EVENT</bpmn:flowNodeRef>
-        <bpmn:flowNodeRef>Event_16nx3da</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>Activity_141fs9h</bpmn:flowNodeRef>
-        <bpmn:flowNodeRef>Activity_0s7uzao</bpmn:flowNodeRef>
         <bpmn:childLaneSet id="LaneSet_007tiuq">
           <bpmn:lane id="Lane_05v0ff4">
             <bpmn:flowNodeRef>Activity_0jkr5jz</bpmn:flowNodeRef>
@@ -25,9 +23,7 @@
             <bpmn:flowNodeRef>Event_0ga6b6s</bpmn:flowNodeRef>
             <bpmn:flowNodeRef>PR_01_DMN_001_DECISION</bpmn:flowNodeRef>
             <bpmn:flowNodeRef>PR_01_START_EVENT</bpmn:flowNodeRef>
-            <bpmn:flowNodeRef>Event_16nx3da</bpmn:flowNodeRef>
             <bpmn:flowNodeRef>Activity_141fs9h</bpmn:flowNodeRef>
-            <bpmn:flowNodeRef>Activity_0s7uzao</bpmn:flowNodeRef>
           </bpmn:lane>
         </bpmn:childLaneSet>
       </bpmn:lane>
@@ -104,26 +100,20 @@
       <bpmn:incoming>Flow_09gtisp</bpmn:incoming>
     </bpmn:endEvent>
     <bpmn:businessRuleTask id="PR_01_DMN_001_DECISION" name="Decision" camunda:resultVariable="output" camunda:decisionRef="Decision_0fjsi5x" camunda:mapDecisionResult="singleEntry">
-      <bpmn:incoming>Flow_1skrbta</bpmn:incoming>
+      <bpmn:incoming>Flow_1gemmd9</bpmn:incoming>
       <bpmn:outgoing>Flow_0lappvy</bpmn:outgoing>
       <bpmn:dataOutputAssociation id="DataOutputAssociation_1nzkww7">
         <bpmn:targetRef>DataObjectReference_1l6wwvj</bpmn:targetRef>
       </bpmn:dataOutputAssociation>
     </bpmn:businessRuleTask>
-    <bpmn:sequenceFlow id="Flow_1gemmd9" sourceRef="PR_01_START_EVENT" targetRef="Event_16nx3da" />
-    <bpmn:sequenceFlow id="Flow_0lappvy" sourceRef="PR_01_DMN_001_DECISION" targetRef="Activity_0s7uzao" />
+    <bpmn:sequenceFlow id="Flow_1gemmd9" sourceRef="PR_01_START_EVENT" targetRef="PR_01_DMN_001_DECISION" />
+    <bpmn:sequenceFlow id="Flow_0lappvy" sourceRef="PR_01_DMN_001_DECISION" targetRef="Activity_141fs9h" />
     <bpmn:dataObjectReference id="DataObjectReference_1l6wwvj" name="Some comment" dataObjectRef="DataObject_0x843mu" />
     <bpmn:dataObject id="DataObject_0x843mu" />
     <bpmn:dataStoreReference id="DataStoreReference_17y3k8f" name="local db" />
     <bpmn:startEvent id="PR_01_START_EVENT" name="StartProcess">
       <bpmn:outgoing>Flow_1gemmd9</bpmn:outgoing>
     </bpmn:startEvent>
-    <bpmn:sequenceFlow id="Flow_1skrbta" sourceRef="Event_16nx3da" targetRef="PR_01_DMN_001_DECISION" />
-    <bpmn:intermediateThrowEvent id="Event_16nx3da" name="Start ticket process">
-      <bpmn:incoming>Flow_1gemmd9</bpmn:incoming>
-      <bpmn:outgoing>Flow_1skrbta</bpmn:outgoing>
-      <bpmn:messageEventDefinition id="MessageEventDefinition_0dnp3uo" messageRef="Message_0tu3ej5" camunda:expression="${execution.getProcessEngineServices().getRuntimeService().startProcessInstanceByMessage(&#34;MSG_START_PR02&#34;)}" />
-    </bpmn:intermediateThrowEvent>
     <bpmn:exclusiveGateway id="Gateway_005mafq" name="What cust?" default="Flow_1hdwdju">
       <bpmn:incoming>Flow_1lad893</bpmn:incoming>
       <bpmn:outgoing>Flow_1hdwdju</bpmn:outgoing>
@@ -136,14 +126,9 @@
           <camunda:inputParameter name="crustChoice">${crustChoice}</camunda:inputParameter>
         </camunda:inputOutput>
       </bpmn:extensionElements>
-      <bpmn:incoming>Flow_1q65pms</bpmn:incoming>
+      <bpmn:incoming>Flow_0lappvy</bpmn:incoming>
       <bpmn:outgoing>Flow_1lad893</bpmn:outgoing>
     </bpmn:callActivity>
-    <bpmn:sequenceFlow id="Flow_1q65pms" sourceRef="Activity_0s7uzao" targetRef="Activity_141fs9h" />
-    <bpmn:serviceTask id="Activity_0s7uzao" name="Corellate message" camunda:delegateExpression="${corellateMessage}">
-      <bpmn:incoming>Flow_0lappvy</bpmn:incoming>
-      <bpmn:outgoing>Flow_1q65pms</bpmn:outgoing>
-    </bpmn:serviceTask>
     <bpmn:textAnnotation id="TextAnnotation_0kphamv" />
     <bpmn:association id="Association_0ct7rok" sourceRef="DataStoreReference_17y3k8f" targetRef="TextAnnotation_0kphamv" />
   </bpmn:process>
@@ -167,21 +152,13 @@
       <bpmndi:BPMNShape id="Lane_05v0ff4_di" bpmnElement="Lane_05v0ff4" isHorizontal="true">
         <dc:Bounds x="220" y="100" width="1700" height="340" />
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNEdge id="Flow_1q65pms_di" bpmnElement="Flow_1q65pms">
-        <di:waypoint x="730" y="320" />
-        <di:waypoint x="790" y="320" />
-      </bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge id="Flow_1skrbta_di" bpmnElement="Flow_1skrbta">
-        <di:waypoint x="408" y="320" />
-        <di:waypoint x="470" y="320" />
-      </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_0lappvy_di" bpmnElement="Flow_0lappvy">
         <di:waypoint x="570" y="320" />
-        <di:waypoint x="630" y="320" />
+        <di:waypoint x="790" y="320" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_1gemmd9_di" bpmnElement="Flow_1gemmd9">
         <di:waypoint x="308" y="320" />
-        <di:waypoint x="372" y="320" />
+        <di:waypoint x="470" y="320" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_09gtisp_di" bpmnElement="Flow_09gtisp">
         <di:waypoint x="1430" y="300" />
@@ -272,12 +249,6 @@
           <dc:Bounds x="259" y="345" width="64" height="14" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Event_0iwwev0_di" bpmnElement="Event_16nx3da">
-        <dc:Bounds x="372" y="302" width="36" height="36" />
-        <bpmndi:BPMNLabel>
-          <dc:Bounds x="365" y="345" width="53" height="27" />
-        </bpmndi:BPMNLabel>
-      </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Gateway_005mafq_di" bpmnElement="Gateway_005mafq" isMarkerVisible="true">
         <dc:Bounds x="815" y="515" width="50" height="50" />
         <bpmndi:BPMNLabel>
@@ -286,9 +257,6 @@
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Activity_1qbqm2s_di" bpmnElement="Activity_141fs9h">
         <dc:Bounds x="790" y="280" width="100" height="80" />
-      </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Activity_1dbkumj_di" bpmnElement="Activity_0s7uzao">
-        <dc:Bounds x="630" y="280" width="100" height="80" />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="TextAnnotation_0kphamv_di" bpmnElement="TextAnnotation_0kphamv">
         <dc:Bounds x="1330" y="280" width="99.99156545209178" height="29.984817813765183" />

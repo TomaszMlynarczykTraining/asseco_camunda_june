@@ -107,6 +107,10 @@
     <bpmn:sequenceFlow id="Flow_0jy2d2m" sourceRef="Activity_1szi9ow" targetRef="Activity_0zhebdy" />
     <bpmn:sequenceFlow id="Flow_0fa13ua" sourceRef="Activity_0zhebdy" targetRef="Event_1v3elw9" />
     <bpmn:callActivity id="Activity_0mgywg2" name="Zaplanowanie/przetworzenie zgłoszenia i zamówienia" calledElement="przetworzenieZgloszenia">
+      <bpmn:extensionElements>
+        <camunda:in source="zmienna" target="wewnetrzna_zmienna_in" />
+        <camunda:out source="wewnetrzna_zmienna_out" target="zmienna" />
+      </bpmn:extensionElements>
       <bpmn:incoming>Flow_05fut6v</bpmn:incoming>
       <bpmn:outgoing>Flow_1dm76ok</bpmn:outgoing>
     </bpmn:callActivity>
