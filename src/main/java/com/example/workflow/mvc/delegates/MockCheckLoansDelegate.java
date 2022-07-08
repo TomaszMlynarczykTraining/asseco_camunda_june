@@ -39,7 +39,7 @@ public class MockCheckLoansDelegate implements JavaDelegate {
                     if (!c.getStreet().equals(delegateExecution.getVariable("form_street"))){
                         break;
                     }
-                    if (!c.getCurrency().equals(delegateExecution.getVariable("form_phoneNumber"))){
+                    if (!c.getPhoneNumber().equals(delegateExecution.getVariable("form_phoneNumber"))){
                         break;
                     }
                     if (!c.getDeclaredIncome().equals(delegateExecution.getVariable("form_declaredIncome"))){
