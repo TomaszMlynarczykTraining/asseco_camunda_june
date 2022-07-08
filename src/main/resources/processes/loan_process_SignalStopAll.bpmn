@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:modeler="http://camunda.org/schema/modeler/1.0" id="Definitions_1k7b3fd" targetNamespace="http://bpmn.io/schema/bpmn" exporter="Camunda Modeler" exporterVersion="4.11.1" modeler:executionPlatform="Camunda Platform" modeler:executionPlatformVersion="7.15.0">
+  <bpmn:process id="Process_SignalStopAll" isExecutable="true">
+    <bpmn:startEvent id="StartEvent_1">
+      <bpmn:outgoing>Flow_1ni2l8s</bpmn:outgoing>
+    </bpmn:startEvent>
+    <bpmn:endEvent id="Event_1qstfp3">
+      <bpmn:incoming>Flow_1hxfcqo</bpmn:incoming>
+    </bpmn:endEvent>
+    <bpmn:sequenceFlow id="Flow_1ni2l8s" sourceRef="StartEvent_1" targetRef="Event_13jvso8" />
+    <bpmn:sequenceFlow id="Flow_1hxfcqo" sourceRef="Event_13jvso8" targetRef="Event_1qstfp3" />
+    <bpmn:intermediateThrowEvent id="Event_13jvso8" name="SignalStopAll">
+      <bpmn:incoming>Flow_1ni2l8s</bpmn:incoming>
+      <bpmn:outgoing>Flow_1hxfcqo</bpmn:outgoing>
+      <bpmn:signalEventDefinition id="SignalEventDefinition_0i0thd9" signalRef="Signal_1jt9syj" />
+    </bpmn:intermediateThrowEvent>
+  </bpmn:process>
+  <bpmn:signal id="Signal_1jt9syj" name="SignalStopAll" />
+  <bpmndi:BPMNDiagram id="BPMNDiagram_1">
+    <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="Process_SignalStopAll">
+      <bpmndi:BPMNEdge id="Flow_1ni2l8s_di" bpmnElement="Flow_1ni2l8s">
+        <di:waypoint x="215" y="97" />
+        <di:waypoint x="302" y="97" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1hxfcqo_di" bpmnElement="Flow_1hxfcqo">
+        <di:waypoint x="338" y="97" />
+        <di:waypoint x="405" y="97" />
+        <di:waypoint x="405" y="110" />
+        <di:waypoint x="472" y="110" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="_BPMNShape_StartEvent_2" bpmnElement="StartEvent_1">
+        <dc:Bounds x="179" y="79" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_1qstfp3_di" bpmnElement="Event_1qstfp3">
+        <dc:Bounds x="472" y="92" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_0rqryvg_di" bpmnElement="Event_13jvso8">
+        <dc:Bounds x="302" y="79" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="287" y="122" width="66" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</bpmn:definitions>
