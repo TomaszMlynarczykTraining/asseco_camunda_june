@@ -9,12 +9,10 @@
       <bpmn:lane id="Lane_063749i">
         <bpmn:flowNodeRef>Task_14lsaus</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>ServiceTask_1nhdsm3</bpmn:flowNodeRef>
-        <bpmn:flowNodeRef>Task_0dpevxt</bpmn:flowNodeRef>
       </bpmn:lane>
       <bpmn:lane id="Lane_1ddhy3h" name="System">
         <bpmn:flowNodeRef>Task_14lsaus</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>ServiceTask_1nhdsm3</bpmn:flowNodeRef>
-        <bpmn:flowNodeRef>Task_0dpevxt</bpmn:flowNodeRef>
       </bpmn:lane>
       <bpmn:lane id="Lane_1vjg2h9" name="Manager">
         <bpmn:flowNodeRef>Event_04jciue</bpmn:flowNodeRef>
@@ -158,21 +156,6 @@
       <bpmn:outgoing>SequenceFlow_0vdey5d</bpmn:outgoing>
       <bpmn:messageEventDefinition id="MessageEventDefinition_0c2q18q" messageRef="Message_1vodonm" camunda:delegateExpression="${messageTimesheet}" />
     </bpmn:intermediateThrowEvent>
-    <bpmn:subProcess id="Task_0dpevxt" triggeredByEvent="true">
-      <bpmn:sequenceFlow id="SequenceFlow_1mbkmu3" sourceRef="Task_1y0y7gl" targetRef="EndEvent_0rcy9a6" />
-      <bpmn:userTask id="Task_1y0y7gl" name="Dodatkowa czynność">
-        <bpmn:incoming>SequenceFlow_1yfpgpt</bpmn:incoming>
-        <bpmn:outgoing>SequenceFlow_1mbkmu3</bpmn:outgoing>
-      </bpmn:userTask>
-      <bpmn:endEvent id="EndEvent_0rcy9a6">
-        <bpmn:incoming>SequenceFlow_1mbkmu3</bpmn:incoming>
-      </bpmn:endEvent>
-      <bpmn:sequenceFlow id="SequenceFlow_1yfpgpt" sourceRef="IntermediateThrowEvent_1axclwo" targetRef="Task_1y0y7gl" />
-      <bpmn:intermediateCatchEvent id="IntermediateThrowEvent_1axclwo">
-        <bpmn:outgoing>SequenceFlow_1yfpgpt</bpmn:outgoing>
-        <bpmn:messageEventDefinition id="MessageEventDefinition_0vsaseg" messageRef="Message_1vodonm" />
-      </bpmn:intermediateCatchEvent>
-    </bpmn:subProcess>
   </bpmn:process>
   <bpmn:signal id="Signal_0a3tvun" name="exitZatwierdzenieWniosku" />
   <bpmn:message id="Message_1vodonm" name="messageTimesheet" />
@@ -333,26 +316,6 @@
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNShape id="IntermediateThrowEvent_1jhhrv9_di" bpmnElement="IntermediateThrowEvent_1pf8xr7">
         <dc:Bounds x="292" y="127" width="36" height="36" />
-      </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="EndEvent_0rcy9a6_di" bpmnElement="EndEvent_0rcy9a6">
-        <dc:Bounds x="500" y="522" width="36" height="36" />
-      </bpmndi:BPMNShape>
-      <bpmndi:BPMNEdge id="SequenceFlow_1mbkmu3_di" bpmnElement="SequenceFlow_1mbkmu3">
-        <di:waypoint x="448" y="540" />
-        <di:waypoint x="500" y="540" />
-      </bpmndi:BPMNEdge>
-      <bpmndi:BPMNShape id="UserTask_18gqdb6_di" bpmnElement="Task_1y0y7gl">
-        <dc:Bounds x="348" y="500" width="100" height="80" />
-      </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="SubProcess_15lpp2s_di" bpmnElement="Task_0dpevxt" isExpanded="true">
-        <dc:Bounds x="250" y="470" width="310" height="130" />
-      </bpmndi:BPMNShape>
-      <bpmndi:BPMNEdge id="SequenceFlow_1yfpgpt_di" bpmnElement="SequenceFlow_1yfpgpt">
-        <di:waypoint x="308" y="540" />
-        <di:waypoint x="348" y="540" />
-      </bpmndi:BPMNEdge>
-      <bpmndi:BPMNShape id="IntermediateCatchEvent_1a4weud_di" bpmnElement="IntermediateThrowEvent_1axclwo">
-        <dc:Bounds x="272" y="522" width="36" height="36" />
       </bpmndi:BPMNShape>
     </bpmndi:BPMNPlane>
   </bpmndi:BPMNDiagram>
