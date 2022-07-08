@@ -20,10 +20,14 @@ public class GetDebtData implements JavaDelegate {
     public void execute(DelegateExecution delegateExecution) throws Exception {
         Object id = delegateExecution.getVariable(LongTermLoanProcess.CLIENT_ID);
         long clientId;
+
+        if(id == null)
+            id = 1L;
+
         if (id instanceof String)
-            clientId = Long.parseLong((String) delegateExecution.getVariable(LongTermLoanProcess.CLIENT_ID));
+            clientId = Long.parseLong((String) id);
         else
-            clientId = (long) delegateExecution.getVariable(LongTermLoanProcess.CLIENT_ID);
+            clientId = (long) id;
 
 
         Client cl = clientService.getClientById(clientId);
