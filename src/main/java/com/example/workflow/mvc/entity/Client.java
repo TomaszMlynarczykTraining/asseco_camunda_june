@@ -19,10 +19,6 @@ public class Client implements Serializable {
     private String street;
     private String phoneNumber;
     private String declaredIncome;
-
-
     @OneToOne
     private Debt debt;
-
-
 }
