@@ -39,10 +39,16 @@
     <bpmn:sequenceFlow id="Flow_07dii74" sourceRef="Activity_0rbwgip" targetRef="Activity_0bymz8g" />
     <bpmn:sequenceFlow id="Flow_0jhn227" sourceRef="Activity_0bymz8g" targetRef="Event_0w2td2l" />
     <bpmn:userTask id="Activity_0rbwgip" name="Decyzja o księgowaniu">
+      <bpmn:extensionElements>
+        <camunda:taskListener class="" event="create" />
+      </bpmn:extensionElements>
       <bpmn:incoming>Flow_067qmkw</bpmn:incoming>
       <bpmn:outgoing>Flow_07dii74</bpmn:outgoing>
     </bpmn:userTask>
     <bpmn:userTask id="Activity_0ex9gkf" name="Utworzenie dokumentu rozliczeniowego">
+      <bpmn:extensionElements>
+        <camunda:taskListener delegateExpression="${defineDueDate}" event="create" />
+      </bpmn:extensionElements>
       <bpmn:incoming>Flow_1h11sjt</bpmn:incoming>
       <bpmn:outgoing>Flow_1jw66hi</bpmn:outgoing>
     </bpmn:userTask>
