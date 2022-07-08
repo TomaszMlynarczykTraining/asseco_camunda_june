@@ -16,7 +16,6 @@ public class Debt implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-
     private String amount;
     private String currency;
     private String isOverdue;
