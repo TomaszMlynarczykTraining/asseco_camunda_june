@@ -2,15 +2,25 @@
   "schemaVersion": 2,
   "components": [
     {
+      "text": "# This is the ern",
+      "type": "text",
+      "id": "Field_1nmwny3"
+    },
+    {
       "label": "Ticket price",
       "type": "textfield",
       "id": "Field_1lgtwtd",
       "key": "ticketPrice",
       "validate": {
-        "required": true
-      }
+        "required": true,
+        "minLength": 1,
+        "maxLength": 20
+      },
+      "description": "123"
     }
   ],
   "type": "default",
-  "id": "Form_13da4h7"
+  "id": "Form_13da4h7",
+  "executionPlatform": "Camunda Platform",
+  "executionPlatformVersion": "7.16"
 }

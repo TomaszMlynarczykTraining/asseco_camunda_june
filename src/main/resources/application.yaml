@@ -20,13 +20,3 @@ camunda.bpm.client:
   subscriptions:
     getFact:
       include-extension-properties: true
-
-    generic-properties.properties:
-      javaSerializationFormatEnabled: true
-camunda.bpm:
-  properties:
-  javaSerializationFormatEnabled: true
-
-  camunda.bpm:
-    process-engine.properties:
-      javaSerializationFormatEnabled: true
