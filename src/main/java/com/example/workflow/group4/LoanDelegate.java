@@ -24,7 +24,7 @@ public class LoanDelegate implements JavaDelegate {
         int retraice = (int) delegateExecution.getVariable("retraice");
 
         Long clientId = (Long) delegateExecution.getVariable(CLIENT_ID);
-        Optional<Client> clientOpt = clientService.getClientById(clientId);
+        Optional<Client> clientOpt = clientService.getClientByIdg4(clientId);
         if (clientOpt.isPresent()) {
             if(retraice==1){
                 throw new RuntimeException("Wykonano zbyt wiele prob!");

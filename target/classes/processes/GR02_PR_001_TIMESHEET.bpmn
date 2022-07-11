@@ -36,6 +36,9 @@
         <bpmn:flowNodeRef>PR_G02_START_EVENT</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>Activity_0xaj8lo</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>Activity_0gq4ah1</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>IntermediateThrowEvent_1jemrn8</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>EndEvent_0t1fm4k</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>IntermediateThrowEvent_1pf8xr7</bpmn:flowNodeRef>
         <bpmn:childLaneSet id="LaneSet_0ica535">
           <bpmn:lane id="Lane_04q5944">
             <bpmn:flowNodeRef>Event_1xwqxig</bpmn:flowNodeRef>
@@ -43,6 +46,9 @@
             <bpmn:flowNodeRef>PR_G02_START_EVENT</bpmn:flowNodeRef>
             <bpmn:flowNodeRef>Activity_0xaj8lo</bpmn:flowNodeRef>
             <bpmn:flowNodeRef>Activity_0gq4ah1</bpmn:flowNodeRef>
+            <bpmn:flowNodeRef>IntermediateThrowEvent_1jemrn8</bpmn:flowNodeRef>
+            <bpmn:flowNodeRef>EndEvent_0t1fm4k</bpmn:flowNodeRef>
+            <bpmn:flowNodeRef>IntermediateThrowEvent_1pf8xr7</bpmn:flowNodeRef>
           </bpmn:lane>
         </bpmn:childLaneSet>
       </bpmn:lane>
@@ -90,7 +96,7 @@
       <bpmn:extensionElements>
         <camunda:taskListener delegateExpression="${timeSheetRegistrationListener}" event="create" />
       </bpmn:extensionElements>
-      <bpmn:incoming>SequenceFlow_1f0e78u</bpmn:incoming>
+      <bpmn:incoming>SequenceFlow_0vdey5d</bpmn:incoming>
       <bpmn:outgoing>SequenceFlow_0cmn35w</bpmn:outgoing>
     </bpmn:userTask>
     <bpmn:sequenceFlow id="SequenceFlow_0uxmlmb" sourceRef="ExclusiveGateway_1hw027i" targetRef="Activity_0ckph6n">
@@ -104,7 +110,7 @@
     <bpmn:sequenceFlow id="Flow_1x5tl00" sourceRef="Activity_0xaj8lo" targetRef="Task_0azrjl8" />
     <bpmn:sequenceFlow id="SequenceFlow_0pff40g" sourceRef="Task_0azrjl8" targetRef="ServiceTask_1nhdsm3" />
     <bpmn:sequenceFlow id="SequenceFlow_1dt6qib" sourceRef="ServiceTask_1nhdsm3" targetRef="Task_14lsaus" />
-    <bpmn:sequenceFlow id="SequenceFlow_1f0e78u" sourceRef="PR_G02_START_EVENT" targetRef="Activity_0gq4ah1" />
+    <bpmn:sequenceFlow id="SequenceFlow_1f0e78u" sourceRef="PR_G02_START_EVENT" targetRef="IntermediateThrowEvent_1pf8xr7" />
     <bpmn:endEvent id="Event_04jciue">
       <bpmn:incoming>Flow_1wvs0i1</bpmn:incoming>
     </bpmn:endEvent>
@@ -134,8 +140,26 @@
       <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${initial_assesment== "accepted"}</bpmn:conditionExpression>
     </bpmn:sequenceFlow>
     <bpmn:sequenceFlow id="SequenceFlow_0cmn35w" sourceRef="Activity_0gq4ah1" targetRef="Activity_0xaj8lo" />
+    <bpmn:boundaryEvent id="IntermediateThrowEvent_1jemrn8" attachedToRef="Activity_0gq4ah1">
+      <bpmn:outgoing>SequenceFlow_16h4ygl</bpmn:outgoing>
+      <bpmn:timerEventDefinition id="TimerEventDefinition_12kjb4p">
+        <bpmn:timeDuration xsi:type="bpmn:tFormalExpression">PT1M</bpmn:timeDuration>
+      </bpmn:timerEventDefinition>
+    </bpmn:boundaryEvent>
+    <bpmn:sequenceFlow id="SequenceFlow_16h4ygl" sourceRef="IntermediateThrowEvent_1jemrn8" targetRef="EndEvent_0t1fm4k" />
+    <bpmn:endEvent id="EndEvent_0t1fm4k">
+      <bpmn:incoming>SequenceFlow_16h4ygl</bpmn:incoming>
+    </bpmn:endEvent>
+    <bpmn:sequenceFlow id="SequenceFlow_0vdey5d" sourceRef="IntermediateThrowEvent_1pf8xr7" targetRef="Activity_0gq4ah1" />
+    <bpmn:intermediateThrowEvent id="IntermediateThrowEvent_1pf8xr7">
+      <bpmn:incoming>SequenceFlow_1f0e78u</bpmn:incoming>
+      <bpmn:outgoing>SequenceFlow_0vdey5d</bpmn:outgoing>
+      <bpmn:messageEventDefinition id="MessageEventDefinition_0c2q18q" messageRef="Message_1vodonm" camunda:delegateExpression="${messageTimesheet}" />
+    </bpmn:intermediateThrowEvent>
   </bpmn:process>
   <bpmn:signal id="Signal_0a3tvun" name="exitZatwierdzenieWniosku" />
+  <bpmn:message id="Message_1vodonm" name="messageTimesheet" />
+  <bpmn:message id="Message_026fjeg" name="sddadsdasd" />
   <bpmndi:BPMNDiagram id="BPMNDiagram_1">
     <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="OcenaWniosku">
       <bpmndi:BPMNShape id="Participant_17b6wmj_di" bpmnElement="Participant_17b6wmj" isHorizontal="true">
@@ -269,12 +293,30 @@
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="SequenceFlow_1f0e78u_di" bpmnElement="SequenceFlow_1f0e78u">
         <di:waypoint x="258" y="145" />
-        <di:waypoint x="380" y="145" />
+        <di:waypoint x="292" y="145" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="SequenceFlow_0cmn35w_di" bpmnElement="SequenceFlow_0cmn35w">
         <di:waypoint x="480" y="145" />
         <di:waypoint x="610" y="145" />
       </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="BoundaryEvent_1dajvc6_di" bpmnElement="IntermediateThrowEvent_1jemrn8">
+        <dc:Bounds x="412" y="167" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="EndEvent_0t1fm4k_di" bpmnElement="EndEvent_0t1fm4k">
+        <dc:Bounds x="522" y="202" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="SequenceFlow_16h4ygl_di" bpmnElement="SequenceFlow_16h4ygl">
+        <di:waypoint x="430" y="203" />
+        <di:waypoint x="430" y="230" />
+        <di:waypoint x="525" y="230" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="SequenceFlow_0vdey5d_di" bpmnElement="SequenceFlow_0vdey5d">
+        <di:waypoint x="328" y="145" />
+        <di:waypoint x="380" y="145" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="IntermediateThrowEvent_1jhhrv9_di" bpmnElement="IntermediateThrowEvent_1pf8xr7">
+        <dc:Bounds x="292" y="127" width="36" height="36" />
+      </bpmndi:BPMNShape>
     </bpmndi:BPMNPlane>
   </bpmndi:BPMNDiagram>
 </bpmn:definitions>
