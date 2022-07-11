@@ -22,9 +22,6 @@ public class IncidentServiceTask implements JavaDelegate {
     @Autowired
     HistoryService historyService;
 
-    @Autowired
-    DeploymentRestService deploymentRestService;
-
     @Override
     public void execute(DelegateExecution delegateExecution) throws Exception {
 
