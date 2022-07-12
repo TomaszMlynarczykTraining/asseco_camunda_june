@@ -15,11 +15,6 @@ import java.util.stream.Collectors;
 @Service
 public class MockDelegate implements JavaDelegate {
 
-    @Autowired
-    RuntimeService runtimeService;
-
-    @Autowired
-    ClientService clientService;
 
     @Override
     public void execute(DelegateExecution delegateExecution) throws Exception {
