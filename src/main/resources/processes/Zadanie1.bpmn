@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:camunda="http://camunda.org/schema/1.0/bpmn" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:modeler="http://camunda.org/schema/modeler/1.0" id="Definitions_09pw9nb" targetNamespace="http://bpmn.io/schema/bpmn" exporter="Camunda Modeler" exporterVersion="4.11.1" modeler:executionPlatform="Camunda Platform" modeler:executionPlatformVersion="7.15.0">
+<bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:camunda="http://camunda.org/schema/1.0/bpmn" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:modeler="http://camunda.org/schema/modeler/1.0" id="Definitions_09pw9nb" targetNamespace="http://bpmn.io/schema/bpmn" exporter="Camunda Modeler" exporterVersion="4.11.1" modeler:executionPlatform="Camunda Platform" modeler:executionPlatformVersion="7.15.0">
   <bpmn:collaboration id="Collaboration_0r2ad77">
     <bpmn:participant id="Participant_1f3zzvw" processRef="Process_1a16j8q" />
   </bpmn:collaboration>
@@ -15,9 +15,16 @@
         <bpmn:flowNodeRef>Activity_0rbwgip</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>Activity_0ex9gkf</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>StartEvent_1</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Event_createTookTime</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Event_12b5wo4</bpmn:flowNodeRef>
       </bpmn:lane>
       <bpmn:lane id="Lane_0vvjodi" name="dział zamówień">
         <bpmn:flowNodeRef>Activity_14ibx01</bpmn:flowNodeRef>
+      </bpmn:lane>
+      <bpmn:lane id="Lane_14395mj">
+        <bpmn:flowNodeRef>Event_getMessage</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Activity_0govyf6</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Event_1dkjr7d</bpmn:flowNodeRef>
       </bpmn:lane>
     </bpmn:laneSet>
     <bpmn:serviceTask id="Activity_1e8r587" name="wygenerowanie listy dostaw" camunda:delegateExpression="${listaDostawDelegate}">
@@ -26,6 +33,7 @@
     </bpmn:serviceTask>
     <bpmn:endEvent id="Event_0w2td2l">
       <bpmn:incoming>Flow_0jhn227</bpmn:incoming>
+      <bpmn:incoming>Flow_1wokyfe</bpmn:incoming>
     </bpmn:endEvent>
     <bpmn:serviceTask id="Activity_0bymz8g" name="Księgowanie" camunda:delegateExpression="${mockDelegate}">
       <bpmn:incoming>Flow_07dii74</bpmn:incoming>
@@ -67,11 +75,45 @@
       <bpmn:outgoing>Flow_067qmkw</bpmn:outgoing>
       <bpmn:multiInstanceLoopCharacteristics camunda:asyncBefore="true" camunda:exclusive="false" camunda:collection="listaDostaw" camunda:elementVariable="dostawa" />
     </bpmn:serviceTask>
+    <bpmn:sequenceFlow id="Flow_0376pnt" sourceRef="Event_createTookTime" targetRef="Event_12b5wo4" />
+    <bpmn:boundaryEvent id="Event_createTookTime" cancelActivity="false" attachedToRef="Activity_0ex9gkf">
+      <bpmn:extensionElements>
+        <camunda:executionListener delegateExpression="${lazyWorkerEvent}" event="end" />
+        <camunda:executionListener delegateExpression="${lazyWorkerEvent}" event="start" />
+      </bpmn:extensionElements>
+      <bpmn:outgoing>Flow_0376pnt</bpmn:outgoing>
+      <bpmn:timerEventDefinition id="TimerEventDefinition_128njy6">
+        <bpmn:timeCycle xsi:type="bpmn:tFormalExpression">R3/PT20S</bpmn:timeCycle>
+      </bpmn:timerEventDefinition>
+    </bpmn:boundaryEvent>
+    <bpmn:startEvent id="Event_getMessage">
+      <bpmn:outgoing>Flow_1f99vkt</bpmn:outgoing>
+      <bpmn:messageEventDefinition id="MessageEventDefinition_06ybpkt" messageRef="Message_0p7tzdr" />
+    </bpmn:startEvent>
+    <bpmn:sequenceFlow id="Flow_1f99vkt" sourceRef="Event_getMessage" targetRef="Activity_0govyf6" />
+    <bpmn:userTask id="Activity_0govyf6">
+      <bpmn:extensionElements>
+        <camunda:executionListener delegateExpression="${lazyWorkerEvent}" event="start" />
+      </bpmn:extensionElements>
+      <bpmn:incoming>Flow_1f99vkt</bpmn:incoming>
+      <bpmn:outgoing>Flow_1oz551c</bpmn:outgoing>
+    </bpmn:userTask>
+    <bpmn:endEvent id="Event_1dkjr7d">
+      <bpmn:incoming>Flow_1oz551c</bpmn:incoming>
+    </bpmn:endEvent>
+    <bpmn:sequenceFlow id="Flow_1oz551c" sourceRef="Activity_0govyf6" targetRef="Event_1dkjr7d" />
+    <bpmn:sequenceFlow id="Flow_1wokyfe" sourceRef="Event_12b5wo4" targetRef="Event_0w2td2l" />
+    <bpmn:intermediateThrowEvent id="Event_12b5wo4">
+      <bpmn:incoming>Flow_0376pnt</bpmn:incoming>
+      <bpmn:outgoing>Flow_1wokyfe</bpmn:outgoing>
+      <bpmn:messageEventDefinition id="MessageEventDefinition_1s8x00g" messageRef="Message_0p7tzdr" camunda:delegateExpression="${notifyManager}" />
+    </bpmn:intermediateThrowEvent>
   </bpmn:process>
+  <bpmn:message id="Message_0p7tzdr" name="Message_lazyWorkers" />
   <bpmndi:BPMNDiagram id="BPMNDiagram_1">
     <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="Collaboration_0r2ad77">
       <bpmndi:BPMNShape id="Participant_1f3zzvw_di" bpmnElement="Participant_1f3zzvw" isHorizontal="true">
-        <dc:Bounds x="129" y="77" width="991" height="643" />
+        <dc:Bounds x="129" y="77" width="991" height="763" />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Lane_0b075qk_di" bpmnElement="Lane_0b075qk" isHorizontal="true">
         <dc:Bounds x="159" y="290" width="961" height="150" />
@@ -81,6 +123,9 @@
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Lane_0vvjodi_di" bpmnElement="Lane_0vvjodi" isHorizontal="true">
         <dc:Bounds x="159" y="440" width="961" height="280" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Lane_14395mj_di" bpmnElement="Lane_14395mj" isHorizontal="true">
+        <dc:Bounds x="159" y="720" width="961" height="120" />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNEdge id="Flow_1h11sjt_di" bpmnElement="Flow_1h11sjt">
         <di:waypoint x="268" y="184" />
@@ -114,6 +159,25 @@
         <di:waypoint x="970" y="360" />
         <di:waypoint x="1032" y="360" />
       </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0376pnt_di" bpmnElement="Flow_0376pnt">
+        <di:waypoint x="558" y="224" />
+        <di:waypoint x="620" y="224" />
+        <di:waypoint x="620" y="158" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1f99vkt_di" bpmnElement="Flow_1f99vkt">
+        <di:waypoint x="288" y="780" />
+        <di:waypoint x="400" y="780" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1oz551c_di" bpmnElement="Flow_1oz551c">
+        <di:waypoint x="500" y="780" />
+        <di:waypoint x="612" y="780" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1wokyfe_di" bpmnElement="Flow_1wokyfe">
+        <di:waypoint x="620" y="122" />
+        <di:waypoint x="620" y="100" />
+        <di:waypoint x="1050" y="100" />
+        <di:waypoint x="1050" y="342" />
+      </bpmndi:BPMNEdge>
       <bpmndi:BPMNShape id="Activity_053al03_di" bpmnElement="Activity_1e8r587">
         <dc:Bounds x="440" y="340" width="100" height="80" />
       </bpmndi:BPMNShape>
@@ -140,6 +204,21 @@
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Activity_166kfh3_di" bpmnElement="Wygenerowanie_faktury">
         <dc:Bounds x="720" y="320" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_1lbw4tl_di" bpmnElement="Event_getMessage">
+        <dc:Bounds x="252" y="762" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0xtu3lk_di" bpmnElement="Activity_0govyf6">
+        <dc:Bounds x="400" y="740" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_1dkjr7d_di" bpmnElement="Event_1dkjr7d">
+        <dc:Bounds x="612" y="762" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_0m9bynp_di" bpmnElement="Event_12b5wo4">
+        <dc:Bounds x="602" y="122" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_1qsahqn_di" bpmnElement="Event_createTookTime">
+        <dc:Bounds x="522" y="206" width="36" height="36" />
       </bpmndi:BPMNShape>
     </bpmndi:BPMNPlane>
   </bpmndi:BPMNDiagram>

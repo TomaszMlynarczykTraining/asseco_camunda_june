@@ -11,6 +11,8 @@
         <bpmn:flowNodeRef>Activity_0ity1x8</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>Activity_0mgywg2</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>Activity_0iapq4m</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Event_timer</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Event_1xjszef</bpmn:flowNodeRef>
         <bpmn:childLaneSet id="LaneSet_1j7kpt2">
           <bpmn:lane id="Lane_17tgr7g">
             <bpmn:flowNodeRef>StartEvent_1</bpmn:flowNodeRef>
@@ -18,6 +20,8 @@
             <bpmn:flowNodeRef>Activity_0ity1x8</bpmn:flowNodeRef>
             <bpmn:flowNodeRef>Activity_0mgywg2</bpmn:flowNodeRef>
             <bpmn:flowNodeRef>Activity_0iapq4m</bpmn:flowNodeRef>
+            <bpmn:flowNodeRef>Event_timer</bpmn:flowNodeRef>
+            <bpmn:flowNodeRef>Event_1xjszef</bpmn:flowNodeRef>
             <bpmn:childLaneSet id="LaneSet_17wedqr" />
           </bpmn:lane>
         </bpmn:childLaneSet>
@@ -135,8 +139,20 @@
     <bpmn:boundaryEvent id="JestDobrze" attachedToRef="Activity_0g5a0mt">
       <bpmn:signalEventDefinition id="SignalEventDefinition_1v0qd8p" signalRef="Signal_0pnqyct" />
     </bpmn:boundaryEvent>
+    <bpmn:boundaryEvent id="Event_timer" attachedToRef="Activity_0iapq4m">
+      <bpmn:outgoing>Flow_00xmlih</bpmn:outgoing>
+      <bpmn:timerEventDefinition id="TimerEventDefinition_0ktynys">
+        <bpmn:timeDuration xsi:type="bpmn:tFormalExpression">PT1M</bpmn:timeDuration>
+      </bpmn:timerEventDefinition>
+    </bpmn:boundaryEvent>
+    <bpmn:intermediateThrowEvent id="Event_1xjszef">
+      <bpmn:incoming>Flow_00xmlih</bpmn:incoming>
+      <bpmn:messageEventDefinition id="MessageEventDefinition_0s98v9t" messageRef="Message_16aug97" camunda:delegateExpression="${group4SendMessageDelegate}" />
+    </bpmn:intermediateThrowEvent>
+    <bpmn:sequenceFlow id="Flow_00xmlih" sourceRef="Event_timer" targetRef="Event_1xjszef" />
   </bpmn:process>
   <bpmn:signal id="Signal_0pnqyct" name="JestDobrzeSignal" />
+  <bpmn:message id="Message_16aug97" name="Message_zacznij_alternatywny_proces" />
   <bpmndi:BPMNDiagram id="BPMNDiagram_1">
     <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="Collaboration_1lkpggf">
       <bpmndi:BPMNShape id="Participant_0pii2wm_di" bpmnElement="Participant_0pii2wm" isHorizontal="true">
@@ -205,6 +221,11 @@
         <di:waypoint x="229" y="140" />
         <di:waypoint x="391" y="140" />
       </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_00xmlih_di" bpmnElement="Flow_00xmlih">
+        <di:waypoint x="491" y="198" />
+        <di:waypoint x="491" y="240" />
+        <di:waypoint x="522" y="240" />
+      </bpmndi:BPMNEdge>
       <bpmndi:BPMNShape id="_BPMNShape_StartEvent_2" bpmnElement="StartEvent_1">
         <dc:Bounds x="193" y="122" width="36" height="36" />
       </bpmndi:BPMNShape>
@@ -235,8 +256,14 @@
       <bpmndi:BPMNShape id="Activity_0m1bjj2_di" bpmnElement="Activity_0g5a0mt">
         <dc:Bounds x="871" y="290" width="100" height="80" />
       </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_0a0swit_di" bpmnElement="Event_1xjszef">
+        <dc:Bounds x="522" y="222" width="36" height="36" />
+      </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Event_0xme89r_di" bpmnElement="JestDobrze">
         <dc:Bounds x="953" y="352" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_12dy7md_di" bpmnElement="Event_timer">
+        <dc:Bounds x="473" y="162" width="36" height="36" />
       </bpmndi:BPMNShape>
     </bpmndi:BPMNPlane>
   </bpmndi:BPMNDiagram>
