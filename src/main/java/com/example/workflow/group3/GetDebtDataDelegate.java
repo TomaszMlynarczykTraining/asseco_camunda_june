@@ -25,7 +25,7 @@ public class GetDebtDataDelegate implements JavaDelegate {
     @Override
     public void execute(DelegateExecution delegateExecution) throws Exception {
         Long clientId = (Long) delegateExecution.getVariable("clientId");
-        Client client = clientService.getClient(clientId);
+        Client client = clientService.getClientById(clientId);
         Debt debt = client.getDebt();
         Boolean isOverdue = false;
         if(debt!=null){
