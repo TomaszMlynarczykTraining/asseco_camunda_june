@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:camunda="http://camunda.org/schema/1.0/bpmn" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" id="Definitions_069oq6i" targetNamespace="http://bpmn.io/schema/bpmn" exporter="Camunda Modeler" exporterVersion="3.5.0">
+<bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:camunda="http://camunda.org/schema/1.0/bpmn" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" id="Definitions_069oq6i" targetNamespace="http://bpmn.io/schema/bpmn" exporter="Camunda Modeler" exporterVersion="4.11.1">
   <bpmn:collaboration id="Collaboration_0byox3m">
     <bpmn:participant id="Participant_1iirjmu" processRef="GR02_long_term_loan" />
   </bpmn:collaboration>
@@ -14,8 +14,8 @@
         <bpmn:flowNodeRef>ExclusiveGateway_1qzjg5b</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>gr02ltr_sendAllUserEmailMsg</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>Task_1vlapct</bpmn:flowNodeRef>
-        <bpmn:flowNodeRef>TimerStartEvent</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>Task_0bbcofj</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>TimerStartEvent</bpmn:flowNodeRef>
       </bpmn:lane>
       <bpmn:lane id="Lane_1svxqtm">
         <bpmn:flowNodeRef>Task_0268w0q</bpmn:flowNodeRef>
@@ -36,8 +36,8 @@
         <bpmn:flowNodeRef>ExclusiveGateway_1qzjg5b</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>gr02ltr_sendAllUserEmailMsg</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>Task_1vlapct</bpmn:flowNodeRef>
-        <bpmn:flowNodeRef>TimerStartEvent</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>Task_0bbcofj</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>TimerStartEvent</bpmn:flowNodeRef>
       </bpmn:lane>
     </bpmn:laneSet>
     <bpmn:exclusiveGateway id="ExclusiveGateway_0vk769s" name="Is applicable to get loan">
@@ -106,6 +106,10 @@
         <bpmn:timeDuration xsi:type="bpmn:tFormalExpression">PT40S</bpmn:timeDuration>
       </bpmn:timerEventDefinition>
     </bpmn:boundaryEvent>
+    <bpmn:manualTask id="Task_0bbcofj" name="Set fla userIsNotApplicable to true">
+      <bpmn:incoming>SequenceFlow_1p98erx</bpmn:incoming>
+      <bpmn:outgoing>SequenceFlow_1qvsxx2</bpmn:outgoing>
+    </bpmn:manualTask>
     <bpmn:startEvent id="TimerStartEvent">
       <bpmn:extensionElements>
         <camunda:properties>
@@ -113,44 +117,57 @@
         </camunda:properties>
       </bpmn:extensionElements>
       <bpmn:outgoing>SequenceFlow_1fklqfc</bpmn:outgoing>
-      <bpmn:timerEventDefinition id="TimerEventDefinition_17n76xa">
-        <bpmn:timeCycle xsi:type="bpmn:tFormalExpression">R/PT10S</bpmn:timeCycle>
-      </bpmn:timerEventDefinition>
     </bpmn:startEvent>
-    <bpmn:manualTask id="Task_0bbcofj" name="Set fla userIsNotApplicable to true">
-      <bpmn:incoming>SequenceFlow_1p98erx</bpmn:incoming>
-      <bpmn:outgoing>SequenceFlow_1qvsxx2</bpmn:outgoing>
-    </bpmn:manualTask>
   </bpmn:process>
   <bpmndi:BPMNDiagram id="BPMNDiagram_1">
     <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="Collaboration_0byox3m">
       <bpmndi:BPMNShape id="Participant_1iirjmu_di" bpmnElement="Participant_1iirjmu" isHorizontal="true">
         <dc:Bounds x="159" y="85" width="1051" height="565" />
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="ExclusiveGateway_0y60f5s_di" bpmnElement="ExclusiveGateway_0y60f5s" isMarkerVisible="true">
-        <dc:Bounds x="675" y="330" width="50" height="50" />
-        <bpmndi:BPMNLabel>
-          <dc:Bounds x="723" y="324" width="74" height="27" />
-        </bpmndi:BPMNLabel>
+      <bpmndi:BPMNShape id="Lane_0ldth9u_di" bpmnElement="Lane_0ldth9u" isHorizontal="true">
+        <dc:Bounds x="189" y="255" width="1021" height="395" />
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="ServiceTask_10y4gl7_di" bpmnElement="gr02ltr_getDebtData">
-        <dc:Bounds x="325" y="315" width="100" height="80" />
+      <bpmndi:BPMNShape id="Lane_01uwejc_di" bpmnElement="Lane_01uwejc" isHorizontal="true">
+        <dc:Bounds x="189" y="85" width="1021" height="170" />
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="UserTask_02bh9rb_di" bpmnElement="Task_0268w0q">
-        <dc:Bounds x="765" y="115" width="100" height="80" />
+      <bpmndi:BPMNShape id="Lane_1svxqtm_di" bpmnElement="Lane_1svxqtm" isHorizontal="true">
+        <dc:Bounds x="219" y="85" width="991" height="170" />
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="ServiceTask_1e19dk1_di" bpmnElement="gr02ltr_prevLoansDataProvider">
-        <dc:Bounds x="555" y="315" width="100" height="80" />
+      <bpmndi:BPMNShape id="Lane_0b5ehql_di" bpmnElement="Lane_0b5ehql" isHorizontal="true">
+        <dc:Bounds x="219" y="255" width="991" height="395" />
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="ExclusiveGateway_0vk769s_di" bpmnElement="ExclusiveGateway_0vk769s" isMarkerVisible="true">
-        <dc:Bounds x="925" y="330" width="50" height="50" />
-        <bpmndi:BPMNLabel>
-          <dc:Bounds x="973" y="324" width="74" height="27" />
-        </bpmndi:BPMNLabel>
-      </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="EndEvent_09jhuah_di" bpmnElement="EndEvent_09jhuah">
-        <dc:Bounds x="1152" y="337" width="36" height="36" />
-      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="SequenceFlow_1pnvww3_di" bpmnElement="SequenceFlow_1pnvww3">
+        <di:waypoint x="535" y="190" />
+        <di:waypoint x="545" y="190" />
+        <di:waypoint x="545" y="355" />
+        <di:waypoint x="555" y="355" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="SequenceFlow_1mfp1gq_di" bpmnElement="SequenceFlow_1mfp1gq">
+        <di:waypoint x="510" y="130" />
+        <di:waypoint x="510" y="110" />
+        <di:waypoint x="605" y="110" />
+        <di:waypoint x="605" y="315" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="SequenceFlow_1u75a5p_di" bpmnElement="SequenceFlow_1u75a5p">
+        <di:waypoint x="485" y="330" />
+        <di:waypoint x="485" y="230" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="SequenceFlow_1aldrm6_di" bpmnElement="SequenceFlow_1aldrm6">
+        <di:waypoint x="485" y="510" />
+        <di:waypoint x="485" y="560" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="SequenceFlow_1cr7se7_di" bpmnElement="SequenceFlow_1cr7se7">
+        <di:waypoint x="485" y="380" />
+        <di:waypoint x="485" y="430" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="SequenceFlow_01qvyxa_di" bpmnElement="SequenceFlow_01qvyxa">
+        <di:waypoint x="425" y="355" />
+        <di:waypoint x="460" y="355" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="SequenceFlow_1fklqfc_di" bpmnElement="SequenceFlow_1fklqfc">
+        <di:waypoint x="278" y="355" />
+        <di:waypoint x="325" y="355" />
+      </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="SequenceFlow_008ze24_di" bpmnElement="SequenceFlow_008ze24">
         <di:waypoint x="655" y="355" />
         <di:waypoint x="675" y="355" />
@@ -185,70 +202,50 @@
         <di:waypoint x="975" y="355" />
         <di:waypoint x="1152" y="355" />
       </bpmndi:BPMNEdge>
-      <bpmndi:BPMNShape id="Lane_0ldth9u_di" bpmnElement="Lane_0ldth9u" isHorizontal="true">
-        <dc:Bounds x="189" y="255" width="1021" height="395" />
+      <bpmndi:BPMNShape id="ExclusiveGateway_0vk769s_di" bpmnElement="ExclusiveGateway_0vk769s" isMarkerVisible="true">
+        <dc:Bounds x="925" y="330" width="50" height="50" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="973" y="324" width="74" height="27" />
+        </bpmndi:BPMNLabel>
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Lane_01uwejc_di" bpmnElement="Lane_01uwejc" isHorizontal="true">
-        <dc:Bounds x="189" y="85" width="1021" height="170" />
+      <bpmndi:BPMNShape id="EndEvent_09jhuah_di" bpmnElement="EndEvent_09jhuah">
+        <dc:Bounds x="1152" y="337" width="36" height="36" />
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Lane_1svxqtm_di" bpmnElement="Lane_1svxqtm" isHorizontal="true">
-        <dc:Bounds x="219" y="85" width="991" height="170" />
+      <bpmndi:BPMNShape id="UserTask_02bh9rb_di" bpmnElement="Task_0268w0q">
+        <dc:Bounds x="765" y="115" width="100" height="80" />
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Lane_0b5ehql_di" bpmnElement="Lane_0b5ehql" isHorizontal="true">
-        <dc:Bounds x="219" y="255" width="991" height="395" />
+      <bpmndi:BPMNShape id="ExclusiveGateway_0y60f5s_di" bpmnElement="ExclusiveGateway_0y60f5s" isMarkerVisible="true">
+        <dc:Bounds x="675" y="330" width="50" height="50" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="723" y="324" width="74" height="27" />
+        </bpmndi:BPMNLabel>
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNEdge id="SequenceFlow_1fklqfc_di" bpmnElement="SequenceFlow_1fklqfc">
-        <di:waypoint x="278" y="355" />
-        <di:waypoint x="325" y="355" />
-      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="ServiceTask_10y4gl7_di" bpmnElement="gr02ltr_getDebtData">
+        <dc:Bounds x="325" y="315" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="ServiceTask_1e19dk1_di" bpmnElement="gr02ltr_prevLoansDataProvider">
+        <dc:Bounds x="555" y="315" width="100" height="80" />
+      </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="ParallelGateway_0hh5s9t_di" bpmnElement="ExclusiveGateway_1qzjg5b">
         <dc:Bounds x="460" y="330" width="50" height="50" />
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNEdge id="SequenceFlow_01qvyxa_di" bpmnElement="SequenceFlow_01qvyxa">
-        <di:waypoint x="425" y="355" />
-        <di:waypoint x="460" y="355" />
-      </bpmndi:BPMNEdge>
       <bpmndi:BPMNShape id="ServiceTask_000ii1v_di" bpmnElement="gr02ltr_sendAllUserEmailMsg">
         <dc:Bounds x="435" y="560" width="100" height="80" />
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNEdge id="SequenceFlow_1cr7se7_di" bpmnElement="SequenceFlow_1cr7se7">
-        <di:waypoint x="485" y="380" />
-        <di:waypoint x="485" y="430" />
-      </bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge id="SequenceFlow_1aldrm6_di" bpmnElement="SequenceFlow_1aldrm6">
-        <di:waypoint x="485" y="510" />
-        <di:waypoint x="485" y="560" />
-      </bpmndi:BPMNEdge>
       <bpmndi:BPMNShape id="ServiceTask_1tiwqlo_di" bpmnElement="Task_1vlapct">
         <dc:Bounds x="435" y="430" width="100" height="80" />
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNEdge id="SequenceFlow_1u75a5p_di" bpmnElement="SequenceFlow_1u75a5p">
-        <di:waypoint x="485" y="330" />
-        <di:waypoint x="485" y="230" />
-      </bpmndi:BPMNEdge>
       <bpmndi:BPMNShape id="UserTask_07axryi_di" bpmnElement="Task_0jwfrui">
         <dc:Bounds x="435" y="150" width="100" height="80" />
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNEdge id="SequenceFlow_1mfp1gq_di" bpmnElement="SequenceFlow_1mfp1gq">
-        <di:waypoint x="510" y="130" />
-        <di:waypoint x="510" y="110" />
-        <di:waypoint x="605" y="110" />
-        <di:waypoint x="605" y="315" />
-      </bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge id="SequenceFlow_1pnvww3_di" bpmnElement="SequenceFlow_1pnvww3">
-        <di:waypoint x="535" y="190" />
-        <di:waypoint x="545" y="190" />
-        <di:waypoint x="545" y="355" />
-        <di:waypoint x="555" y="355" />
-      </bpmndi:BPMNEdge>
-      <bpmndi:BPMNShape id="BoundaryEvent_0u38s2v_di" bpmnElement="IntermediateThrowEvent_197so32">
-        <dc:Bounds x="492" y="132" width="36" height="36" />
-      </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="StartEvent_1odg5gz_di" bpmnElement="TimerStartEvent">
-        <dc:Bounds x="242" y="337" width="36" height="36" />
-      </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="ManualTask_1wsceu6_di" bpmnElement="Task_0bbcofj">
         <dc:Bounds x="765" y="445" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_08hxsbd_di" bpmnElement="TimerStartEvent">
+        <dc:Bounds x="242" y="337" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="BoundaryEvent_0u38s2v_di" bpmnElement="IntermediateThrowEvent_197so32">
+        <dc:Bounds x="492" y="132" width="36" height="36" />
       </bpmndi:BPMNShape>
     </bpmndi:BPMNPlane>
   </bpmndi:BPMNDiagram>
