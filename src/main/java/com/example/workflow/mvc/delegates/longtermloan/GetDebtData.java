@@ -4,6 +4,7 @@ package com.example.workflow.mvc.delegates.longtermloan;
 import com.example.workflow.mvc.entity.Client;
 import com.example.workflow.mvc.processes.longtermloan.LongTermLoanProcess;
 import com.example.workflow.mvc.service.ClientService;
+import com.example.workflow.mvc.service.IClientService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.camunda.bpm.engine.delegate.DelegateExecution;
@@ -14,7 +15,7 @@ import org.springframework.stereotype.Service;
 @Slf4j
 @RequiredArgsConstructor
 public class GetDebtData implements JavaDelegate {
-    private final ClientService clientService;
+    private final IClientService clientService;
 
     @Override
     public void execute(DelegateExecution delegateExecution) throws Exception {

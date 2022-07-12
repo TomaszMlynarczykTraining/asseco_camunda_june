@@ -11,15 +11,17 @@ import java.util.List;
 
 @Service
 @RequiredArgsConstructor
-public class ClientService {
+public class ClientService implements IClientService {
 
     @Autowired
     private ClientRepository clientRepository;
 
+    @Override
     public List<Client> getClients() {
         return clientRepository.findAll();
     }
-    public Client getClientById(long id ) {
+    @Override
+    public Client getClientById(long id) {
         return clientRepository.getById(id);
     }
 }
