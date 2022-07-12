@@ -6,6 +6,7 @@ import com.example.workflow.mvc.service.IClientService;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 public class MockClientService implements IClientService {
 
@@ -24,6 +25,11 @@ public class MockClientService implements IClientService {
     @Override
     public Client getClientById(long id) {
         return clients.get((int) id);
+    }
+
+    @Override
+    public Optional<Client> getClientByIdg4(Long id) {
+        return Optional.empty();
     }
 
     private Client createClient(Long id, String name, String surname, Long debtId, String amount){
