@@ -4,47 +4,81 @@
     <bpmn:startEvent id="StartEvent_1">
       <bpmn:outgoing>Flow_1c41m8q</bpmn:outgoing>
     </bpmn:startEvent>
-    <bpmn:userTask id="Activity_1x942ao" name="Check ticket price" camunda:formRef="Form_13da4h7" camunda:formRefBinding="latest">
-      <bpmn:incoming>Flow_1c41m8q</bpmn:incoming>
-      <bpmn:outgoing>Flow_0tpr5zu</bpmn:outgoing>
-    </bpmn:userTask>
     <bpmn:endEvent id="Event_0qyvz33">
       <bpmn:incoming>Flow_0pbkcyn</bpmn:incoming>
     </bpmn:endEvent>
-    <bpmn:sequenceFlow id="Flow_0tpr5zu" sourceRef="Activity_1x942ao" targetRef="Activity_1thmhve" />
-    <bpmn:sequenceFlow id="Flow_1c41m8q" sourceRef="StartEvent_1" targetRef="Activity_1x942ao" />
+    <bpmn:sequenceFlow id="Flow_1c41m8q" sourceRef="StartEvent_1" targetRef="Event_0wu6wve" />
     <bpmn:sequenceFlow id="Flow_0pbkcyn" sourceRef="Activity_1thmhve" targetRef="Event_0qyvz33" />
     <bpmn:serviceTask id="Activity_1thmhve" name="Register ticket" camunda:delegateExpression="${mockDelegate}">
       <bpmn:incoming>Flow_0tpr5zu</bpmn:incoming>
       <bpmn:outgoing>Flow_0pbkcyn</bpmn:outgoing>
     </bpmn:serviceTask>
+    <bpmn:userTask id="Activity_1x942ao" name="Check ticket price" camunda:formRef="Form_13da4h7" camunda:formRefBinding="latest">
+      <bpmn:incoming>Flow_156farz</bpmn:incoming>
+      <bpmn:outgoing>Flow_0tpr5zu</bpmn:outgoing>
+    </bpmn:userTask>
+    <bpmn:sequenceFlow id="Flow_0tpr5zu" sourceRef="Activity_1x942ao" targetRef="Activity_1thmhve" />
+    <bpmn:sequenceFlow id="Flow_14i22wx" sourceRef="Event_0wu6wve" targetRef="Event_15nv8pt" />
+    <bpmn:sequenceFlow id="Flow_156farz" sourceRef="Event_15nv8pt" targetRef="Activity_1x942ao" />
+    <bpmn:intermediateCatchEvent id="Event_0wu6wve" name="Wait 2h">
+      <bpmn:incoming>Flow_1c41m8q</bpmn:incoming>
+      <bpmn:outgoing>Flow_14i22wx</bpmn:outgoing>
+      <bpmn:timerEventDefinition id="TimerEventDefinition_0v0eqv7">
+        <bpmn:timeDuration xsi:type="bpmn:tFormalExpression">PT2H</bpmn:timeDuration>
+      </bpmn:timerEventDefinition>
+    </bpmn:intermediateCatchEvent>
+    <bpmn:intermediateCatchEvent id="Event_15nv8pt" name="Wait for example message">
+      <bpmn:incoming>Flow_14i22wx</bpmn:incoming>
+      <bpmn:outgoing>Flow_156farz</bpmn:outgoing>
+      <bpmn:messageEventDefinition id="MessageEventDefinition_1l15noi" messageRef="Message_0snwzyn" />
+    </bpmn:intermediateCatchEvent>
   </bpmn:process>
   <bpmn:message id="Message_0snwzyn" name="EXAMPLE_MESSAGE" />
   <bpmndi:BPMNDiagram id="BPMNDiagram_1">
     <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="PR_000_TICKET_PROCESS">
       <bpmndi:BPMNEdge id="Flow_1c41m8q_di" bpmnElement="Flow_1c41m8q">
         <di:waypoint x="188" y="117" />
-        <di:waypoint x="350" y="117" />
+        <di:waypoint x="252" y="117" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_0tpr5zu_di" bpmnElement="Flow_0tpr5zu">
-        <di:waypoint x="450" y="117" />
-        <di:waypoint x="500" y="117" />
+        <di:waypoint x="570" y="117" />
+        <di:waypoint x="620" y="117" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_0pbkcyn_di" bpmnElement="Flow_0pbkcyn">
-        <di:waypoint x="600" y="117" />
-        <di:waypoint x="692" y="117" />
+        <di:waypoint x="720" y="117" />
+        <di:waypoint x="812" y="117" />
       </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_14i22wx_di" bpmnElement="Flow_14i22wx">
+        <di:waypoint x="288" y="117" />
+        <di:waypoint x="352" y="117" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_156farz_di" bpmnElement="Flow_156farz">
+        <di:waypoint x="388" y="117" />
+        <di:waypoint x="470" y="117" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="Activity_1wexa99_di" bpmnElement="Activity_1x942ao">
+        <dc:Bounds x="470" y="77" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_0qyvz33_di" bpmnElement="Event_0qyvz33">
+        <dc:Bounds x="812" y="99" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_1s3azsz_di" bpmnElement="Activity_1thmhve">
+        <dc:Bounds x="620" y="77" width="100" height="80" />
+      </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="_BPMNShape_StartEvent_2" bpmnElement="StartEvent_1">
         <dc:Bounds x="152" y="99" width="36" height="36" />
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Activity_1wexa99_di" bpmnElement="Activity_1x942ao">
-        <dc:Bounds x="350" y="77" width="100" height="80" />
+      <bpmndi:BPMNShape id="Event_1j4u1kt_di" bpmnElement="Event_0wu6wve">
+        <dc:Bounds x="252" y="99" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="252" y="142" width="36" height="14" />
+        </bpmndi:BPMNLabel>
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Event_0qyvz33_di" bpmnElement="Event_0qyvz33">
-        <dc:Bounds x="692" y="99" width="36" height="36" />
-      </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Activity_1s3azsz_di" bpmnElement="Activity_1thmhve">
-        <dc:Bounds x="500" y="77" width="100" height="80" />
+      <bpmndi:BPMNShape id="Event_069ducg_di" bpmnElement="Event_15nv8pt">
+        <dc:Bounds x="352" y="99" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="329" y="142" width="82" height="27" />
+        </bpmndi:BPMNLabel>
       </bpmndi:BPMNShape>
     </bpmndi:BPMNPlane>
   </bpmndi:BPMNDiagram>
