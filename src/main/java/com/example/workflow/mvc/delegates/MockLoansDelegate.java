@@ -13,8 +13,13 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
-public class MockDelegate implements JavaDelegate {
+public class MockLoansDelegate implements JavaDelegate {
 
+    @Autowired
+    RuntimeService runtimeService;
+
+    @Autowired
+    ClientService clientService;
 
     @Override
     public void execute(DelegateExecution delegateExecution) throws Exception {
@@ -23,10 +28,6 @@ public class MockDelegate implements JavaDelegate {
         // delegateExecution.getSuperExecution().getVariable("pizza");
         // delegateExecution.getVariableLocal("pizza");
 
-//        List<Client> clients = clientService.getClients().stream()
-//                .collect(Collectors.toList());
-//
-//        delegateExecution.setVariable("clientList", clients);
 
         //System.out.println(runtimeService.getVariable(delegateExecution.getProcessInstanceId(), "pizza"));
 
