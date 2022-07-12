@@ -3,23 +3,29 @@ package com.example.workflow.mvc.service;
 import com.example.workflow.mvc.entity.Client;
 import com.example.workflow.mvc.repository.ClientRepository;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 
 @Service
 @RequiredArgsConstructor
-public class ClientService {
+public class ClientService implements IClientService {
 
-    @Autowired
-    private ClientRepository clientRepository;
+    private final ClientRepository clientRepository;
 
+    @Override
     public List<Client> getClients() {
         return clientRepository.findAll();
     }
-    public Client getClientById(long id ) {
+
+    public Optional<Client> getClientByIdg4(Long clientId) {
+        return clientRepository.findById(clientId);
+    }
+
+    @Override
+    public Client getClientById(long id) {
         return clientRepository.getById(id);
     }
 }
