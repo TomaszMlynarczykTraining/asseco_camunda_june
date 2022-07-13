@@ -21,9 +21,9 @@ public class CheckCurrencyExternalTaskGRP3 implements ExternalTaskHandler {
     @Override
     public void execute(ExternalTask externalTask, ExternalTaskService externalTaskService) {
         String businessKey = externalTask.getBusinessKey();
-
         try {
             //logika biznesowa, np. prztwarzanie pdfa
+//            throw new Exception("test");
             RestTemplateBuilder builder = new RestTemplateBuilder();
             RestTemplate template = builder.build();
 //        String uri = UriComponentsBuilder.fromUriString("https://api.nbp.pl/api/exchangerates/rates/A/USD/?format=json")
@@ -39,9 +39,16 @@ public class CheckCurrencyExternalTaskGRP3 implements ExternalTaskHandler {
 
             externalTaskService.complete(externalTask, variables);
         } catch(Exception ex) {
+            int retries = 1;
+            if(externalTask.getRetries()!=null){
+                retries = retries - externalTask.getRetries();
+                if (retries<0){
+                    retries = 0;
+                }
+            }
             ex.printStackTrace();
             Long duration = Duration.parse("PT2M").toMillis();
-            externalTaskService.handleFailure(externalTask.getId(), "Exception!", ExceptionUtils.getStackTrace(ex), 1, duration);
+            externalTaskService.handleFailure(externalTask.getId(), "Exception!", ExceptionUtils.getStackTrace(ex), retries, duration);
         }
 
     }
