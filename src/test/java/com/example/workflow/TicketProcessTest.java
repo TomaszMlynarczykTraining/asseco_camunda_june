@@ -33,8 +33,13 @@ public class TicketProcessTest extends AbstractProcessEngineRuleTest {
 
 
         ProcessInstance instance = runtimeService().startProcessInstanceByKey(PROCESS_KEY);
-
         assertThat(instance).isStarted();
+
+
+        execute(job("Event_0wu6wve"));
+        assertThat(instance).hasPassed("Event_0wu6wve");
+        runtimeService().correlateMessage("EXAMPLE_MESSAGE");
+
         assertThat(instance).isWaitingAt(USER_TASK_CHECK_TICKET);
 
         Task task = taskService().createTaskQuery().processInstanceId(instance.getProcessInstanceId()).singleResult();
