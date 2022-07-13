@@ -21,6 +21,7 @@ public class LoanDelegate implements JavaDelegate {
     public void execute(DelegateExecution delegateExecution) throws Exception {
         Boolean error = true;
         Long amount = 0L;
+        String currency="";
         int retraice = (int) delegateExecution.getVariable("retraice");
 
         Long clientId = (Long) delegateExecution.getVariable(CLIENT_ID);
@@ -36,11 +37,13 @@ public class LoanDelegate implements JavaDelegate {
             if (clientDebt != null) {
                 error = false;
                 amount = Long.valueOf(clientDebt.getAmount());
+                currency=clientDebt.getCurrency();
 
             }
         }
         delegateExecution.setVariable("error", error);
         delegateExecution.setVariable("dept", amount);
         delegateExecution.setVariable("retraice", retraice);
+        delegateExecution.setVariable("currency", currency);
     }
 }
