@@ -3,7 +3,7 @@ package com.example.workflow.mvc.processes.longtermloan;
 public class LongTermLoanProcess {
 
 
-
+    public static final String CURRENCY = "currency";
 
     private LongTermLoanProcess() {
     }
