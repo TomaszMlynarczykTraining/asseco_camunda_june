@@ -20,6 +20,6 @@ public class InitializeVariablesOnListener implements TaskListener {
         delegateTask.setVariable("form_street","Miejska");
         delegateTask.setVariable("form_phoneNumber","12541556");
         delegateTask.setVariable("form_declaredIncome","25566");
-        delegateTask.setVariable("form_currency","PLN");
+        delegateTask.setVariable("form_currency","USD");
     }
 }
