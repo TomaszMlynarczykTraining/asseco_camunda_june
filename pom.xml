@@ -142,6 +142,13 @@
             <version>2.2.7</version>
         </dependency>
 
+        <dependency>
+            <groupId>org.camunda.community.mockito</groupId>
+            <artifactId>camunda-platform-7-mockito</artifactId>
+            <scope>test</scope>
+            <version>6.17.0</version>
+        </dependency>
+
     </dependencies>
 
     <build>
